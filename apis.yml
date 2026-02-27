@@ -1,0 +1,96 @@
+name: Ariba Sourcing
+description: SAP Ariba Sourcing provides APIs for strategic sourcing, supplier collaboration, and procurement processes including RFx management, auctions, and contract management.
+image: https://www.ariba.com/ariba-logo.png
+url: https://www.ariba.com
+created: '2024'
+modified: '2024'
+tags:
+- Sourcing
+- Procurement
+- Supply Chain
+- SAP
+- B2B
+- RFx
+- Auctions
+- Contracts
+apis:
+- name: Ariba Sourcing API
+  description: Core API for managing sourcing events, RFx processes, supplier responses, and sourcing projects
+  image: https://www.ariba.com/ariba-sourcing-api.png
+  humanURL: https://developer.ariba.com/api/sourcing
+  baseURL: https://openapi.ariba.com/api/sourcing/v1
+  tags:
+  - Sourcing Events
+  - RFx
+  - Procurement
+  properties:
+  - type: Documentation
+    url: https://developer.ariba.com/api/sourcing/docs
+  - type: OpenAPI
+    url: https://developer.ariba.com/api/sourcing/openapi.json
+  - type: Authentication
+    url: https://developer.ariba.com/api/authentication
+- name: Ariba Supplier API
+  description: API for managing supplier information, collaboration, and supplier response submissions
+  image: https://www.ariba.com/ariba-supplier-api.png
+  humanURL: https://developer.ariba.com/api/supplier
+  baseURL: https://openapi.ariba.com/api/supplier/v1
+  tags:
+  - Suppliers
+  - Collaboration
+  - Vendor Management
+  properties:
+  - type: Documentation
+    url: https://developer.ariba.com/api/supplier/docs
+  - type: OpenAPI
+    url: https://developer.ariba.com/api/supplier/openapi.json
+- name: Ariba Analytical Reporting API
+  description: Extract sourcing data for reporting and analytics purposes
+  image: https://www.ariba.com/ariba-analytics-api.png
+  humanURL: https://developer.ariba.com/api/analytics
+  baseURL: https://openapi.ariba.com/api/analytics-reporting-sourcing/v1
+  tags:
+  - Analytics
+  - Reporting
+  - Data Export
+  properties:
+  - type: Documentation
+    url: https://developer.ariba.com/api/analytics/docs
+  - type: OpenAPI
+    url: https://developer.ariba.com/api/analytics/openapi.json
+- name: Ariba Procurement API
+  description: Manage procurement documents, requisitions, and purchase orders
+  image: https://www.ariba.com/ariba-procurement-api.png
+  humanURL: https://developer.ariba.com/api/procurement
+  baseURL: https://openapi.ariba.com/api/procurement/v1
+  tags:
+  - Procurement
+  - Purchase Orders
+  - Requisitions
+  properties:
+  - type: Documentation
+    url: https://developer.ariba.com/api/procurement/docs
+  - type: OpenAPI
+    url: https://developer.ariba.com/api/procurement/openapi.json
+common:
+- type: Portal
+  url: https://developer.ariba.com
+- type: Getting Started
+  url: https://developer.ariba.com/getting-started
+- type: Authentication
+  url: https://developer.ariba.com/api/authentication
+- type: Rate Limits
+  url: https://developer.ariba.com/api/rate-limits
+- type: Support
+  url: https://help.sap.com/ariba
+- type: Terms of Service
+  url: https://www.ariba.com/terms
+- type: Privacy Policy
+  url: https://www.sap.com/privacy
+- type: Status
+  url: https://status.ariba.com
+maintainers:
+- name: SAP Ariba
+  email: developer@ariba.com
+  url: https://developer.ariba.com
+include: []
