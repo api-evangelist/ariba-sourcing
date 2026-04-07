@@ -8,14 +8,14 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Sourcing
-  - Procurement
-  - Supply Chain
-  - SAP
-  - B2B
-  - RFx
   - Auctions
+  - B2B
   - Contracts
+  - Procurement
+  - RFx
+  - SAP
+  - Sourcing
+  - Supply Chain
 url: >-
   https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/apis.yml
 created: '2024-01-01'
@@ -30,9 +30,9 @@ apis:
     humanURL: https://help.sap.com/docs/ariba-apis
     baseURL: https://openapi.ariba.com/api/sourcing/v1
     tags:
-      - Sourcing Events
-      - RFx
       - Procurement
+      - RFx
+      - Sourcing Events
     properties:
       - type: Documentation
         url: https://help.sap.com/docs/ariba-apis
