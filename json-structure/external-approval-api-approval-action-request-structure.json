@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/json-structure/external-approval-api-approval-action-request-structure.json",
+  "name": "ApprovalActionRequest",
+  "description": "Request body for submitting an approval action.",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "Task identifier.",
+      "example": "TASK-500123"
+    },
+    "action": {
+      "type": "string",
+      "description": "Action to take.",
+      "enum": [
+        "approve",
+        "deny"
+      ],
+      "example": "approve"
+    },
+    "userId": {
+      "type": "string",
+      "description": "User ID submitting the action.",
+      "example": "jsmith@example.com"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Optional comment for the action.",
+      "example": "Approved per procurement policy."
+    }
+  },
+  "required": [
+    "taskId",
+    "action",
+    "userId"
+  ]
+}

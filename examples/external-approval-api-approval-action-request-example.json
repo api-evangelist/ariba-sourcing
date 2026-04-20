@@ -1,0 +1,6 @@
+{
+  "taskId": "TASK-500123",
+  "action": "approve",
+  "userId": "jsmith@example.com",
+  "comment": "Approved per procurement policy."
+}

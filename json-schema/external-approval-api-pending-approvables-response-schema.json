@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/json-schema/external-approval-api-pending-approvables-response-schema.json",
+  "title": "PendingApprovablesResponse",
+  "description": "Response containing pending approval tasks.",
+  "type": "object",
+  "properties": {
+    "tasks": {
+      "type": "array",
+      "description": "List of pending approval tasks.",
+      "items": {
+        "$ref": "#/components/schemas/PendingApprovalTask"
+      }
+    }
+  }
+}

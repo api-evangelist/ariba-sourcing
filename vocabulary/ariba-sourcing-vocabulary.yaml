@@ -1,0 +1,228 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Ariba Sourcing"
+  description: "Vocabulary mapping operational API dimensions and capability workflows for SAP Ariba Sourcing strategic procurement platform."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: ariba-sourcing-approval
+      name: External Approval API for Sourcing and Supplier Management
+      version: "v2"
+      baseUrl: https://openapi.ariba.com/api/sourcing-approval/v2/prod
+      status: active
+
+  resources:
+    - name: approval-tasks
+      description: External approval tasks in sourcing projects, contracts, and supplier management.
+      apis:
+        - ariba-sourcing-approval
+      actions:
+        - list
+        - get
+    - name: changes
+      description: Approval task state changes (submitted, completed, etc.).
+      apis:
+        - ariba-sourcing-approval
+      actions:
+        - list
+    - name: approvable-documents
+      description: Documents, events, and projects pending external approval.
+      apis:
+        - ariba-sourcing-approval
+      actions:
+        - get
+    - name: approval-actions
+      description: Approve or deny actions submitted for approval tasks.
+      apis:
+        - ariba-sourcing-approval
+      actions:
+        - submit
+    - name: approval-groups
+      description: Groups of users authorized to approve specific documents.
+      apis:
+        - ariba-sourcing-approval
+      actions:
+        - list
+
+  actions:
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: submit
+      httpMethod: POST
+      pattern: write
+
+  schemas:
+    core:
+      - name: ApprovalChange
+        api: ariba-sourcing-approval
+        keyProperties:
+          - changeSequenceId
+          - taskId
+          - documentType
+          - status
+      - name: PendingApprovalTask
+        api: ariba-sourcing-approval
+        keyProperties:
+          - taskId
+          - documentType
+          - assignedTo
+          - status
+      - name: ApprovalTask
+        api: ariba-sourcing-approval
+        keyProperties:
+          - taskId
+          - documentId
+          - status
+          - approvalRequests
+      - name: ApprovableDocument
+        api: ariba-sourcing-approval
+        keyProperties:
+          - id
+          - type
+          - title
+          - status
+
+  parameters:
+    identifiers:
+      - name: entity_id
+        description: Task or document identifier
+      - name: entity_type
+        description: Type of approvable document (Workspace, RFXDocument, etc.)
+      - name: group_id
+        description: Approval group identifier
+      - name: realm
+        description: SAP Ariba realm name
+    filters:
+      - name: $filter
+        description: Filter by solution area and document type
+      - name: documentType
+        description: Filter pending tasks by document type
+      - name: user
+        description: Filter tasks by assigned user
+    pagination:
+      - name: offset
+        description: Pagination offset
+      - name: limit
+        description: Maximum records per page
+
+  enums:
+    documentTypes:
+      - name: Workspace
+        description: Sourcing project workspace
+      - name: Folder
+        description: Sourcing folder
+      - name: RFXDocument
+        description: Request for proposal/quotation/information document
+      - name: ContractContentDocument
+        description: Contract content document
+      - name: ContractWorkspace
+        description: Contract workspace
+      - name: ContractRequest
+        description: Contract request
+    actions:
+      - name: approve
+        description: Approve the task
+      - name: deny
+        description: Deny the task
+
+  authentication:
+    schemes:
+      - name: OAuth2
+        type: oauth2
+        flow: clientCredentials
+        tokenUrl: https://api.ariba.com/v2/oauth/token
+        description: Per-API OAuth credentials from SAP Ariba Developer Portal
+        rateLimits:
+          requestsPerSecond: 20
+          requestsPerMinute: 400
+          requestsPerHour: 12000
+          requestsPerDay: 40000
+
+capability:
+  workflows:
+    - name: Sourcing Approvals
+      file: capabilities/sourcing-approvals.yaml
+      description: External approval workflow for sourcing projects, contracts, and supplier management
+      apisComposited:
+        - ariba-sourcing-approval
+      toolCount: 7
+      personas:
+        - Sourcing Manager
+        - Procurement Approver
+
+  personas:
+    - id: sourcing-manager
+      name: Sourcing Manager
+      description: Manages strategic sourcing events, RFx processes, and contract workflows.
+      workflows:
+        - Sourcing Approvals
+    - id: procurement-approver
+      name: Procurement Approver
+      description: Reviews and approves or denies sourcing documents, events, and contracts.
+      workflows:
+        - Sourcing Approvals
+
+  domains:
+    - name: Sourcing Events
+      description: RFx events, auctions, and sourcing projects requiring approval.
+      resources:
+        - approval-tasks
+        - approvable-documents
+    - name: Contract Management
+      description: Contract workspaces and contract content requiring approval.
+      resources:
+        - approvable-documents
+    - name: Supplier Management
+      description: Supplier management projects requiring external approval.
+      resources:
+        - approval-tasks
+
+  namespaces:
+    consumed:
+      - ariba-sourcing-approval
+    rest:
+      - name: ariba-sourcing-workflow-api
+        port: 8080
+    mcp:
+      - name: ariba-sourcing-workflow-mcp
+        port: 9090
+
+  binds:
+    - name: ARIBA_SOURCING_OAUTH_TOKEN
+      description: OAuth token for External Approval API
+      workflows:
+        - Sourcing Approvals
+
+crossReference:
+  - resource: approval-tasks
+    operations:
+      - listApprovalChanges
+      - listPendingApprovables
+      - getApprovalTask
+    workflows:
+      - Sourcing Approvals
+    personas:
+      - Sourcing Manager
+      - Procurement Approver
+  - resource: approvable-documents
+    operations:
+      - getApprovableDocument
+      - downloadAttachment
+    workflows:
+      - Sourcing Approvals
+    personas:
+      - Procurement Approver
+  - resource: approval-actions
+    operations:
+      - submitApprovalAction
+    workflows:
+      - Sourcing Approvals
+    personas:
+      - Procurement Approver

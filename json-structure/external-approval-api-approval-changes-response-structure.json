@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/json-structure/external-approval-api-approval-changes-response-structure.json",
+  "name": "ApprovalChangesResponse",
+  "description": "Response containing changed approval tasks.",
+  "type": "object",
+  "properties": {
+    "changes": {
+      "type": "array",
+      "description": "List of approval task changes.",
+      "items": {
+        "$ref": "#/components/schemas/ApprovalChange"
+      }
+    }
+  }
+}

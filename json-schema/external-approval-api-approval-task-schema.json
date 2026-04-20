@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/json-schema/external-approval-api-approval-task-schema.json",
+  "title": "ApprovalTask",
+  "description": "Details about an external approval task.",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "Task identifier.",
+      "example": "TASK-500123"
+    },
+    "documentType": {
+      "type": "string",
+      "description": "Type of document being approved.",
+      "example": "RFXDocument"
+    },
+    "documentId": {
+      "type": "string",
+      "description": "Document identifier.",
+      "example": "DOC-001234"
+    },
+    "status": {
+      "type": "string",
+      "description": "Task status.",
+      "example": "pending"
+    },
+    "approvalRequests": {
+      "type": "array",
+      "description": "Approval request entries with approver details.",
+      "items": {
+        "$ref": "#/components/schemas/ApprovalRequest"
+      }
+    }
+  }
+}

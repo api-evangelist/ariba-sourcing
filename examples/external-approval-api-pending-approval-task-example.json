@@ -1,0 +1,8 @@
+{
+  "taskId": "TASK-500123",
+  "documentType": "RFXDocument",
+  "documentId": "DOC-001234",
+  "assignedTo": "jsmith@example.com",
+  "status": "pending",
+  "fullURL": "https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace"
+}

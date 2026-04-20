@@ -1,0 +1,251 @@
+rules:
+
+  # INFO / METADATA
+  info-title-required:
+    description: API title must be defined and follow the "Ariba Sourcing - {API Name}" pattern.
+    severity: error
+    given: $.info
+    then:
+      field: title
+      function: truthy
+
+  info-title-prefix:
+    description: API title should start with "Ariba Sourcing".
+    severity: warn
+    given: $.info.title
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Ariba Sourcing"
+
+  info-description-required:
+    description: API info must have a description.
+    severity: error
+    given: $.info
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: API version must be defined.
+    severity: error
+    given: $.info
+    then:
+      field: version
+      function: truthy
+
+  # OPENAPI VERSION
+  openapi-version-3:
+    description: APIs must use OpenAPI 3.0.x.
+    severity: error
+    given: $
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\.0\\."
+
+  # SERVERS
+  servers-required:
+    description: Servers must be defined.
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+
+  servers-https-only:
+    description: All server URLs must use HTTPS.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  servers-openapi-ariba-host:
+    description: Production server should use openapi.ariba.com host.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: "openapi\\.ariba\\.com"
+
+  # PATHS
+  paths-no-trailing-slash:
+    description: Paths must not have a trailing slash.
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\/$"
+
+  # OPERATIONS
+  operation-summary-required:
+    description: Every operation must have a summary.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-prefix:
+    description: Operation summaries should start with "Ariba Sourcing".
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Ariba Sourcing"
+
+  operation-description-required:
+    description: Every operation must have a description.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+
+  operation-id-required:
+    description: Every operation must have an operationId.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: truthy
+
+  operation-id-camel-case:
+    description: operationId should use camelCase.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  operation-tags-required:
+    description: Every operation must have at least one tag.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+
+  # PARAMETERS
+  parameter-description-required:
+    description: All parameters must have a description.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].parameters[*]
+    then:
+      field: description
+      function: truthy
+
+  parameter-realm-required:
+    description: SAP Ariba APIs require a realm query parameter.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete].parameters[?(@.name == 'realm')]
+    then:
+      function: truthy
+
+  # REQUEST BODIES
+  request-body-description-recommended:
+    description: Request bodies should have a description.
+    severity: warn
+    given: $.paths[*][post,put,patch].requestBody
+    then:
+      field: description
+      function: truthy
+
+  # RESPONSES
+  response-success-required:
+    description: Every operation must have a success response.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ['200']
+            - required: ['201']
+            - required: ['204']
+
+  response-401-recommended:
+    description: Operations should define a 401 Unauthorized response.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: '401'
+      function: truthy
+
+  response-500-recommended:
+    description: Operations should define a 500 Internal Server Error response.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses
+    then:
+      field: '500'
+      function: truthy
+
+  response-description-required:
+    description: All responses must have a description.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].responses[*]
+    then:
+      field: description
+      function: truthy
+
+  # SCHEMAS
+  schema-property-description-recommended:
+    description: Schema properties should have descriptions.
+    severity: info
+    given: $.components.schemas[*].properties[*]
+    then:
+      field: description
+      function: truthy
+
+  # SECURITY
+  security-schemes-defined:
+    description: Security schemes must be defined in components.
+    severity: error
+    given: $.components.securitySchemes
+    then:
+      function: truthy
+
+  security-oauth2-token-url:
+    description: OAuth2 token URL should use api.ariba.com.
+    severity: warn
+    given: $.components.securitySchemes.OAuth2.flows.clientCredentials.tokenUrl
+    then:
+      function: pattern
+      functionOptions:
+        match: "api\\.ariba\\.com"
+
+  # RATE LIMITING
+  rate-limits-documented:
+    description: Rate limit information should be documented in the API description.
+    severity: info
+    given: $.info.description
+    then:
+      function: pattern
+      functionOptions:
+        match: "(?i)(rate limit|requests per)"
+
+  # HTTP METHOD CONVENTIONS
+  get-no-request-body:
+    description: GET operations must not have a request body.
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: requestBody
+      function: falsy
+
+  # GENERAL QUALITY
+  microcks-operation-extension:
+    description: Operations should include x-microcks-operation.
+    severity: info
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: x-microcks-operation
+      function: truthy

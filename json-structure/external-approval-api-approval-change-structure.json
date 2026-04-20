@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/json-structure/external-approval-api-approval-change-structure.json",
+  "name": "ApprovalChange",
+  "description": "An approval task state change record.",
+  "type": "object",
+  "properties": {
+    "changeSequenceId": {
+      "type": "string",
+      "description": "Sequence ID of the change for pagination.",
+      "example": "12345"
+    },
+    "taskId": {
+      "type": "string",
+      "description": "Task identifier.",
+      "example": "TASK-500123"
+    },
+    "documentType": {
+      "type": "string",
+      "description": "Type of document being approved.",
+      "example": "RFXDocument"
+    },
+    "documentId": {
+      "type": "string",
+      "description": "Document identifier.",
+      "example": "DOC-001234"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current task status.",
+      "example": "submitted"
+    },
+    "fullURL": {
+      "type": "string",
+      "description": "Full URL to view the approvable in the SAP Ariba UI.",
+      "example": "https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ariba": "https://openapi.ariba.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ApprovalChangesResponse": "ariba:ApprovalChangesResponse",
+    "changes": {
+      "@id": "ariba:changes",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "ApprovalChange": "ariba:ApprovalChange",
+    "changeSequenceId": {
+      "@id": "ariba:changeSequenceId",
+      "@type": "xsd:string"
+    },
+    "taskId": {
+      "@id": "ariba:taskId",
+      "@type": "xsd:string"
+    },
+    "documentType": {
+      "@id": "ariba:documentType",
+      "@type": "xsd:string"
+    },
+    "documentId": {
+      "@id": "ariba:documentId",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "ariba:status",
+      "@type": "xsd:string"
+    },
+    "fullURL": {
+      "@id": "ariba:fullURL",
+      "@type": "xsd:string"
+    },
+    "PendingApprovablesResponse": "ariba:PendingApprovablesResponse",
+    "tasks": {
+      "@id": "ariba:tasks",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "PendingApprovalTask": "ariba:PendingApprovalTask",
+    "assignedTo": {
+      "@id": "ariba:assignedTo",
+      "@type": "xsd:string"
+    },
+    "ApprovalTask": "ariba:ApprovalTask",
+    "approvalRequests": {
+      "@id": "ariba:approvalRequests",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "ApprovalRequest": "ariba:ApprovalRequest",
+    "approvers": {
+      "@id": "ariba:approvers",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "Approver": "ariba:Approver",
+    "userId": {
+      "@id": "ariba:userId",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "ApprovableDocument": "ariba:ApprovableDocument",
+    "id": {
+      "@id": "ariba:id",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "ariba:type",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "ariba:title",
+      "@type": "xsd:string"
+    },
+    "realm": {
+      "@id": "ariba:realm",
+      "@type": "xsd:string"
+    },
+    "ApprovalActionRequest": "ariba:ApprovalActionRequest",
+    "action": {
+      "@id": "ariba:action",
+      "@type": "xsd:string"
+    },
+    "comment": {
+      "@id": "ariba:comment",
+      "@type": "xsd:string"
+    },
+    "ApprovalActionResponse": "ariba:ApprovalActionResponse",
+    "GroupMembersResponse": "ariba:GroupMembersResponse",
+    "groupId": {
+      "@id": "ariba:groupId",
+      "@type": "xsd:string"
+    },
+    "members": {
+      "@id": "ariba:members",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "GroupMember": "ariba:GroupMember"
+  }
+}

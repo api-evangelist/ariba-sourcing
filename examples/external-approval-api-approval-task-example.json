@@ -1,0 +1,9 @@
+{
+  "taskId": "TASK-500123",
+  "documentType": "RFXDocument",
+  "documentId": "DOC-001234",
+  "status": "pending",
+  "approvalRequests": [
+    "sample-value"
+  ]
+}

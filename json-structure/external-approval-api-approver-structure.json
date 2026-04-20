@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/json-structure/external-approval-api-approver-structure.json",
+  "name": "Approver",
+  "description": "An individual or group approver.",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "User identifier.",
+      "example": "jsmith@example.com"
+    },
+    "name": {
+      "type": "string",
+      "description": "Approver display name.",
+      "example": "Jane Smith"
+    }
+  }
+}

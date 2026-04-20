@@ -1,0 +1,204 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Ariba Sourcing - Sourcing Approvals"
+  description: "Workflow for managing external approval tasks in SAP Ariba strategic sourcing projects, contracts, and supplier management. Used by procurement approvers and sourcing managers."
+  tags:
+    - Approvals
+    - Ariba
+    - Contracts
+    - Procurement
+    - SAP
+    - Sourcing
+    - Supplier Management
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ARIBA_SOURCING_OAUTH_TOKEN: ARIBA_SOURCING_OAUTH_TOKEN
+
+capability:
+  consumes:
+    - import: ariba-sourcing-approval
+      location: ./shared/external-approval-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: ariba-sourcing-workflow-api
+      description: "Unified REST API for SAP Ariba Sourcing external approval workflows."
+      resources:
+        - path: /v1/changes
+          name: changes
+          description: "Approval task state changes."
+          operations:
+            - method: GET
+              name: list-changes
+              description: "List changed approval tasks."
+              call: "ariba-sourcing-approval.list-approval-changes"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/pending-approvables
+          name: pending-approvables
+          description: "Pending approval tasks."
+          operations:
+            - method: GET
+              name: list-pending
+              description: "List pending approval tasks."
+              call: "ariba-sourcing-approval.list-pending-approvables"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/tasks/{taskId}
+          name: task-details
+          description: "Approval task details."
+          operations:
+            - method: GET
+              name: get-task
+              description: "Get approval task details."
+              call: "ariba-sourcing-approval.get-approval-task"
+              with:
+                entity_id: "rest.taskId"
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/documents/{entityType}/{entityId}
+          name: approvable-documents
+          description: "Approvable documents."
+          operations:
+            - method: GET
+              name: get-document
+              description: "Get approvable document details."
+              call: "ariba-sourcing-approval.get-approvable-document"
+              with:
+                entity_type: "rest.entityType"
+                entity_id: "rest.entityId"
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/actions
+          name: actions
+          description: "Approval actions."
+          operations:
+            - method: POST
+              name: submit-action
+              description: "Submit approve or deny action."
+              call: "ariba-sourcing-approval.submit-approval-action"
+              with:
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/groups/{groupId}/members
+          name: group-members
+          description: "Approval group members."
+          operations:
+            - method: GET
+              name: list-members
+              description: "List group members."
+              call: "ariba-sourcing-approval.list-group-members"
+              with:
+                group_id: "rest.groupId"
+                realm: "rest.realm"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: ariba-sourcing-workflow-mcp
+      transport: http
+      description: "MCP server for AI-assisted SAP Ariba sourcing approval workflows."
+      tools:
+        - name: list-approval-changes
+          description: "List SAP Ariba sourcing approval tasks that have recently changed state."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "ariba-sourcing-approval.list-approval-changes"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-pending-approvals
+          description: "List pending SAP Ariba sourcing approval tasks awaiting action."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "ariba-sourcing-approval.list-pending-approvables"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-task-details
+          description: "Get details for a specific SAP Ariba sourcing approval task including approvers."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "ariba-sourcing-approval.get-approval-task"
+          with:
+            entity_id: "tools.taskId"
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-sourcing-document
+          description: "Get details about an SAP Ariba approvable sourcing document, RFX event, or contract workspace."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "ariba-sourcing-approval.get-approvable-document"
+          with:
+            entity_type: "tools.entityType"
+            entity_id: "tools.entityId"
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: approve-task
+          description: "Approve an SAP Ariba sourcing approval task on behalf of an authorized approver."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "ariba-sourcing-approval.submit-approval-action"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: deny-task
+          description: "Deny an SAP Ariba sourcing approval task on behalf of an authorized approver."
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "ariba-sourcing-approval.submit-approval-action"
+          with:
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-approval-group-members
+          description: "List members of an SAP Ariba approval group to identify eligible approvers."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "ariba-sourcing-approval.list-group-members"
+          with:
+            group_id: "tools.groupId"
+            realm: "tools.realm"
+          outputParameters:
+            - type: object
+              mapping: "$."

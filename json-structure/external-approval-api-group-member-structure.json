@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/json-structure/external-approval-api-group-member-structure.json",
+  "name": "GroupMember",
+  "description": "A member of an approval group.",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "User identifier.",
+      "example": "jsmith@example.com"
+    },
+    "name": {
+      "type": "string",
+      "description": "User display name.",
+      "example": "Jane Smith"
+    }
+  }
+}

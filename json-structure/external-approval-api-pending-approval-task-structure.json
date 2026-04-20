@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/json-structure/external-approval-api-pending-approval-task-structure.json",
+  "name": "PendingApprovalTask",
+  "description": "A pending external approval task.",
+  "type": "object",
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "Task identifier.",
+      "example": "TASK-500123"
+    },
+    "documentType": {
+      "type": "string",
+      "description": "Type of document being approved.",
+      "example": "RFXDocument"
+    },
+    "documentId": {
+      "type": "string",
+      "description": "Document identifier.",
+      "example": "DOC-001234"
+    },
+    "assignedTo": {
+      "type": "string",
+      "description": "User assigned to this task.",
+      "example": "jsmith@example.com"
+    },
+    "status": {
+      "type": "string",
+      "description": "Task status.",
+      "example": "pending"
+    },
+    "fullURL": {
+      "type": "string",
+      "description": "Full URL to view the approvable in the SAP Ariba UI.",
+      "example": "https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace"
+    }
+  }
+}

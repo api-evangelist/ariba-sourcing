@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/json-schema/external-approval-api-approvable-document-schema.json",
+  "title": "ApprovableDocument",
+  "description": "An approvable document or project.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Document identifier.",
+      "example": "WS500123"
+    },
+    "type": {
+      "type": "string",
+      "description": "Document type.",
+      "example": "Workspace"
+    },
+    "title": {
+      "type": "string",
+      "description": "Document title.",
+      "example": "Q1 2026 Office Supplies RFQ"
+    },
+    "status": {
+      "type": "string",
+      "description": "Document status.",
+      "example": "pending"
+    },
+    "realm": {
+      "type": "string",
+      "description": "SAP Ariba realm name.",
+      "example": "mycompany-T"
+    }
+  }
+}
