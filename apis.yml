@@ -55,7 +55,7 @@ apis:
         url: json-structure/external-approval-api-approval-task-structure.json
       - type: JSONStructure
         url: json-structure/external-approval-api-approvable-document-structure.json
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/ariba-sourcing-external-approval-api-context.jsonld
 common:
   - type: Portal
