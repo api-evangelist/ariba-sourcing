@@ -1,0 +1,282 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Ariba Sourcing - External Approval API — Approval Tasks
+  description: 'Ariba Sourcing - External Approval API — Approval Tasks. 4 operations. Lead operation: Ariba Sourcing Submit
+    Approval Action. Self-contained Naftiko capability covering one Ariba Sourcing business surface.'
+  tags:
+  - Ariba Sourcing
+  - Approval Tasks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ARIBA_SOURCING_API_KEY: ARIBA_SOURCING_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: external-approval-approval-tasks
+    baseUri: https://openapi.ariba.com/api/sourcing-approval/v2/prod
+    description: Ariba Sourcing - External Approval API — Approval Tasks business capability. Self-contained, no shared references.
+    resources:
+    - name: action
+      path: /action
+      operations:
+      - name: submitapprovalaction
+        method: POST
+        description: Ariba Sourcing Submit Approval Action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realm
+          in: query
+          type: string
+          description: The SAP Ariba realm name.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: changes
+      path: /changes
+      operations:
+      - name: listapprovalchanges
+        method: GET
+        description: Ariba Sourcing List Changed Approval Tasks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realm
+          in: query
+          type: string
+          description: The SAP Ariba realm name identifying your site.
+          required: true
+        - name: needTotal
+          in: query
+          type: boolean
+          description: Whether to include total count in X-Total-Count response header.
+        - name: offset
+          in: query
+          type: integer
+          description: Offset from the beginning of the result set for pagination.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum page size. Ignored if value is less than 10.
+        - name: lastChangeId
+          in: query
+          type: string
+          description: The last change received in the previous response. Response includes all changes since this ID. Default
+            is 0.
+        - name: $filter
+          in: query
+          type: string
+          description: Filter approval tasks by solution area and type. See API documentation for supported filter values.
+    - name: pendingApprovables
+      path: /pendingApprovables
+      operations:
+      - name: listpendingapprovables
+        method: GET
+        description: Ariba Sourcing List Pending Approval Tasks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realm
+          in: query
+          type: string
+          description: The SAP Ariba realm name identifying your site.
+          required: true
+        - name: user
+          in: query
+          type: string
+          description: User ID. If specified, only approval tasks assigned to this user are returned.
+        - name: documentType
+          in: query
+          type: string
+          description: 'Type of document to be approved. Values: Workspace, Folder, RFXDocument, ContractContentDocument,
+            ContractWorkspace, ContractRequest.'
+        - name: offset
+          in: query
+          type: integer
+          description: Starting point within collection of results.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of records. Range 0-100, default 100.
+        - name: resetStartPosition
+          in: query
+          type: boolean
+          description: When true, returns empty set if offset exceeds total records.
+    - name: task-entity_id
+      path: /task/{entity_id}
+      operations:
+      - name: getapprovaltask
+        method: GET
+        description: Ariba Sourcing Get Approval Task Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: entity_id
+          in: path
+          type: string
+          description: The task ID as returned from GET /changes or GET /pendingApprovables.
+          required: true
+        - name: realm
+          in: query
+          type: string
+          description: The SAP Ariba realm name.
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ARIBA_SOURCING_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: external-approval-approval-tasks-rest
+    port: 8080
+    description: REST adapter for Ariba Sourcing - External Approval API — Approval Tasks. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/action
+      name: action
+      description: REST surface for action.
+      operations:
+      - method: POST
+        name: submitapprovalaction
+        description: Ariba Sourcing Submit Approval Action
+        call: external-approval-approval-tasks.submitapprovalaction
+        with:
+          realm: rest.realm
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/changes
+      name: changes
+      description: REST surface for changes.
+      operations:
+      - method: GET
+        name: listapprovalchanges
+        description: Ariba Sourcing List Changed Approval Tasks
+        call: external-approval-approval-tasks.listapprovalchanges
+        with:
+          realm: rest.realm
+          needTotal: rest.needTotal
+          offset: rest.offset
+          limit: rest.limit
+          lastChangeId: rest.lastChangeId
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pendingapprovables
+      name: pendingapprovables
+      description: REST surface for pendingApprovables.
+      operations:
+      - method: GET
+        name: listpendingapprovables
+        description: Ariba Sourcing List Pending Approval Tasks
+        call: external-approval-approval-tasks.listpendingapprovables
+        with:
+          realm: rest.realm
+          user: rest.user
+          documentType: rest.documentType
+          offset: rest.offset
+          limit: rest.limit
+          resetStartPosition: rest.resetStartPosition
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/task/{entity-id}
+      name: task-entity-id
+      description: REST surface for task-entity_id.
+      operations:
+      - method: GET
+        name: getapprovaltask
+        description: Ariba Sourcing Get Approval Task Details
+        call: external-approval-approval-tasks.getapprovaltask
+        with:
+          entity_id: rest.entity_id
+          realm: rest.realm
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: external-approval-approval-tasks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Ariba Sourcing - External Approval API — Approval Tasks. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: ariba-sourcing-submit-approval-action
+      description: Ariba Sourcing Submit Approval Action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: external-approval-approval-tasks.submitapprovalaction
+      with:
+        realm: tools.realm
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ariba-sourcing-list-changed-approval
+      description: Ariba Sourcing List Changed Approval Tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: external-approval-approval-tasks.listapprovalchanges
+      with:
+        realm: tools.realm
+        needTotal: tools.needTotal
+        offset: tools.offset
+        limit: tools.limit
+        lastChangeId: tools.lastChangeId
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ariba-sourcing-list-pending-approval
+      description: Ariba Sourcing List Pending Approval Tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: external-approval-approval-tasks.listpendingapprovables
+      with:
+        realm: tools.realm
+        user: tools.user
+        documentType: tools.documentType
+        offset: tools.offset
+        limit: tools.limit
+        resetStartPosition: tools.resetStartPosition
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ariba-sourcing-get-approval-task
+      description: Ariba Sourcing Get Approval Task Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: external-approval-approval-tasks.getapprovaltask
+      with:
+        entity_id: tools.entity_id
+        realm: tools.realm
+      outputParameters:
+      - type: object
+        mapping: $.
