@@ -117,6 +117,8 @@ common:
     description: Approve contract workspaces and contract content documents through the external approval API.
   - name: SAP Ariba Supplier Management
     description: Approve supplier lifecycle and performance management projects and supplier registration requests.
+- type: LLMsTxt
+  url: https://developer.ariba.com/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
