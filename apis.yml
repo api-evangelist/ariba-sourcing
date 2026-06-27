@@ -51,11 +51,11 @@ apis:
     url: json-structure/external-approval-api-approvable-document-structure.json
   - type: JSONLD
     url: json-ld/ariba-sourcing-external-approval-api-context.jsonld
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/external-approval-approval-tasks.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/external-approval-documents.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/external-approval-groups.yaml
 common:
 - type: Portal
@@ -117,7 +117,7 @@ common:
     description: Approve contract workspaces and contract content documents through the external approval API.
   - name: SAP Ariba Supplier Management
     description: Approve supplier lifecycle and performance management projects and supplier registration requests.
-- type: LLMsTxt
+- type: LlmsText
   url: https://developer.ariba.com/llms.txt
 maintainers:
 - FN: Kin Lane
