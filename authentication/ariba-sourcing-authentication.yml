@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ariba-sourcing-external-approval-api.yaml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.ariba.com/v2/oauth/token
+    scopes: 0
+  description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token
+    using client credentials.
+  sources:
+  - openapi/ariba-sourcing-external-approval-api.yaml

@@ -58,6 +58,12 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/external-approval-groups.yaml
 common:
+- type: VulnerabilityDisclosure
+  url: security/ariba-sourcing-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/ariba-sourcing-domain-security.yml
+- type: Authentication
+  url: authentication/ariba-sourcing-authentication.yml
 - type: OAuthScopes
   url: scopes/ariba-sourcing-scopes.yml
 - type: Portal
