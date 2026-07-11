@@ -58,6 +58,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/external-approval-groups.yaml
 common:
+- type: OAuthScopes
+  url: scopes/ariba-sourcing-scopes.yml
 - type: Portal
   url: https://developer.ariba.com
 - type: Documentation
