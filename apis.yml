@@ -58,6 +58,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/external-approval-groups.yaml
 common:
+- type: AgenticAccess
+  url: agentic-access/ariba-sourcing-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/ariba-sourcing-vulnerability-disclosure.yml
 - type: DomainSecurity
