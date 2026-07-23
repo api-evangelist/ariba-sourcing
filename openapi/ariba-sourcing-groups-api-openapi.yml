@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: Ariba Sourcing - External Approval Approval Tasks Groups API
+  description: The External Approval API for Sourcing and Supplier Management enables client applications to approve or deny SAP Ariba strategic sourcing solutions approval tasks. It supports external approval tasks in sourcing projects, contract workspaces, engagement risk assessment, and all types of supplier management projects.
+  version: v2 - 2026-02
+  contact:
+    name: SAP Ariba Developer Support
+    url: https://developer.ariba.com
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+- url: https://openapi.ariba.com/api/sourcing-approval/v2/prod
+  description: Production environment
+- url: https://openapi.ariba.com/api/sourcing-approval/v2/sandbox
+  description: Sandbox environment
+security:
+- OAuth2: []
+tags:
+- name: Groups
+  description: Approval group membership retrieval
+paths:
+  /groups/{group_id}/members:
+    get:
+      operationId: listGroupMembers
+      summary: Ariba Sourcing List Approval Group Members
+      description: Retrieves user members of a specific approval group. The group_id is available in the approvalRequests/approvers/group/id path of the GET /task/{entity_id} response.
+      tags:
+      - Groups
+      parameters:
+      - name: group_id
+        in: path
+        required: true
+        description: The group identifier.
+        schema:
+          type: string
+        example: GROUP-001
+      - name: realm
+        in: query
+        required: true
+        description: The SAP Ariba realm name.
+        schema:
+          type: string
+        example: mycompany-T
+      responses:
+        '200':
+          description: Successfully retrieved group members.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupMembersResponse'
+              examples:
+                listGroupMembers200Example:
+                  summary: Default listGroupMembers 200 response
+                  x-microcks-default: true
+                  value:
+                    groupId: GROUP-001
+                    members:
+                    - userId: jsmith@example.com
+                      name: Jane Smith
+                    - userId: bjones@example.com
+                      name: Bob Jones
+        '404':
+          description: Group not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    GroupMember:
+      title: GroupMember
+      description: A member of an approval group.
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User identifier.
+          example: jsmith@example.com
+        name:
+          type: string
+          description: User display name.
+          example: Jane Smith
+    GroupMembersResponse:
+      title: GroupMembersResponse
+      description: Response containing group members.
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Group identifier.
+          example: GROUP-001
+        members:
+          type: array
+          description: List of group member users.
+          items:
+            $ref: '#/components/schemas/GroupMember'
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response.
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message.
+          example: Bad Request
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token using client credentials.
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.ariba.com/v2/oauth/token
+          scopes: {}

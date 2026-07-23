@@ -1,0 +1,189 @@
+openapi: 3.0.3
+info:
+  title: Ariba Sourcing - External Approval Approval Tasks Documents API
+  description: The External Approval API for Sourcing and Supplier Management enables client applications to approve or deny SAP Ariba strategic sourcing solutions approval tasks. It supports external approval tasks in sourcing projects, contract workspaces, engagement risk assessment, and all types of supplier management projects.
+  version: v2 - 2026-02
+  contact:
+    name: SAP Ariba Developer Support
+    url: https://developer.ariba.com
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+- url: https://openapi.ariba.com/api/sourcing-approval/v2/prod
+  description: Production environment
+- url: https://openapi.ariba.com/api/sourcing-approval/v2/sandbox
+  description: Sandbox environment
+security:
+- OAuth2: []
+tags:
+- name: Documents
+  description: Sourcing document and workspace retrieval
+paths:
+  /{entity_type}/{entity_id}:
+    get:
+      operationId: getApprovableDocument
+      summary: Ariba Sourcing Get Approvable Document Details
+      description: Retrieves details about the specified approvable document, sourcing event, or project. Use $select parameter for sourcing events to get details about specific parts such as line items or invited suppliers.
+      tags:
+      - Documents
+      parameters:
+      - name: entity_type
+        in: path
+        required: true
+        description: 'Type of item to be approved. Examples: Workspace, RFXDocument, ContractWorkspace, Folder.'
+        schema:
+          type: string
+        example: Workspace
+      - name: entity_id
+        in: path
+        required: true
+        description: The ID of the item to be approved.
+        schema:
+          type: string
+        example: WS500123
+      - name: realm
+        in: query
+        required: true
+        description: The SAP Ariba realm name.
+        schema:
+          type: string
+        example: mycompany-T
+      - name: $select
+        in: query
+        required: false
+        description: For sourcing events, specifies which parts of the event to retrieve (e.g., line items, invited suppliers).
+        schema:
+          type: string
+        example: lineItems,suppliers
+      responses:
+        '200':
+          description: Successfully retrieved approvable document details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovableDocument'
+              examples:
+                getApprovableDocument200Example:
+                  summary: Default getApprovableDocument 200 response
+                  x-microcks-default: true
+                  value:
+                    id: WS500123
+                    type: Workspace
+                    title: Q1 2026 Office Supplies RFQ
+                    status: pending
+                    realm: mycompany-T
+        '404':
+          description: Document not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /Document/{documentId}/attachments/{docAttachmentId}:
+    get:
+      operationId: downloadAttachment
+      summary: Ariba Sourcing Download Approval Document Attachment
+      description: Downloads an attachment associated with an approvable document. The documentId is from the GET /{entity_type}/{entity_id} response and docAttachmentId is from the GET /document/{documentId} response.
+      tags:
+      - Documents
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        description: The document ID from which to download the attachment.
+        schema:
+          type: string
+        example: DOC-001234
+      - name: docAttachmentId
+        in: path
+        required: true
+        description: The attachment ID.
+        schema:
+          type: string
+        example: ATTACH-001
+      - name: realm
+        in: query
+        required: true
+        description: The SAP Ariba realm name.
+        schema:
+          type: string
+        example: mycompany-T
+      responses:
+        '200':
+          description: Attachment file content.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Attachment not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ApprovableDocument:
+      title: ApprovableDocument
+      description: An approvable document or project.
+      type: object
+      properties:
+        id:
+          type: string
+          description: Document identifier.
+          example: WS500123
+        type:
+          type: string
+          description: Document type.
+          example: Workspace
+        title:
+          type: string
+          description: Document title.
+          example: Q1 2026 Office Supplies RFQ
+        status:
+          type: string
+          description: Document status.
+          example: pending
+        realm:
+          type: string
+          description: SAP Ariba realm name.
+          example: mycompany-T
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response.
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message.
+          example: Bad Request
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token using client credentials.
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.ariba.com/v2/oauth/token
+          scopes: {}
