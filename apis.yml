@@ -4,7 +4,20 @@ description: SAP Ariba Sourcing provides cloud-based strategic sourcing capabili
   supplier collaboration, RFx management, electronic auctions, and contract management through APIs that integrate sourcing
   processes with enterprise systems.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ariba-sourcing.png
 tags:
 - Approvals
 - Auctions
@@ -21,24 +34,81 @@ created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-- aid: ariba-sourcing:ariba-sourcing-external-approval-api
-  name: Ariba Sourcing - External Approval API
-  description: The External Approval API for Sourcing and Supplier Management enables client applications to approve or deny
-    SAP Ariba strategic sourcing approval tasks. It supports external approval tasks in sourcing projects, contract workspaces,
-    engagement risk assessment, and all types of supplier management projects.
+- aid: ariba-sourcing:ariba-sourcing-approval-tasks-api
+  name: Ariba Sourcing Approval Tasks API
+  description: External approval task retrieval and action operations
   humanURL: https://help.sap.com/docs/ariba-apis
   baseURL: https://openapi.ariba.com/api/sourcing-approval/v2/prod
   tags:
-  - Approvals
-  - Contracts
-  - RFx
-  - Sourcing
-  - Supplier Management
+  - Approval Tasks
   properties:
-  - type: Documentation
-    url: https://help.sap.com/doc/69824194c55e4393870c5d3587aaf821/cloud/en-US/abdf297f281243ed9f8f3ead706a74d3.pdf
   - type: OpenAPI
-    url: openapi/ariba-sourcing-external-approval-api.yaml
+    url: openapi/ariba-sourcing-approval-tasks-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://help.sap.com/doc/69824194c55e4393870c5d3587aaf821/cloud/en-US/abdf297f281243ed9f8f3ead706a74d3.pdf
+  - type: JSONSchema
+    url: json-schema/external-approval-api-approval-task-schema.json
+  - type: JSONSchema
+    url: json-schema/external-approval-api-approvable-document-schema.json
+  - type: JSONSchema
+    url: json-schema/external-approval-api-approval-changes-response-schema.json
+  - type: JSONStructure
+    url: json-structure/external-approval-api-approval-task-structure.json
+  - type: JSONStructure
+    url: json-structure/external-approval-api-approvable-document-structure.json
+  - type: JSONLD
+    url: json-ld/ariba-sourcing-external-approval-api-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/external-approval-approval-tasks.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/external-approval-documents.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/external-approval-groups.yaml
+- aid: ariba-sourcing:ariba-sourcing-documents-api
+  name: Ariba Sourcing Documents API
+  description: Sourcing document and workspace retrieval
+  humanURL: https://help.sap.com/docs/ariba-apis
+  baseURL: https://openapi.ariba.com/api/sourcing-approval/v2/prod
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/ariba-sourcing-documents-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://help.sap.com/doc/69824194c55e4393870c5d3587aaf821/cloud/en-US/abdf297f281243ed9f8f3ead706a74d3.pdf
+  - type: JSONSchema
+    url: json-schema/external-approval-api-approval-task-schema.json
+  - type: JSONSchema
+    url: json-schema/external-approval-api-approvable-document-schema.json
+  - type: JSONSchema
+    url: json-schema/external-approval-api-approval-changes-response-schema.json
+  - type: JSONStructure
+    url: json-structure/external-approval-api-approval-task-structure.json
+  - type: JSONStructure
+    url: json-structure/external-approval-api-approvable-document-structure.json
+  - type: JSONLD
+    url: json-ld/ariba-sourcing-external-approval-api-context.jsonld
+  - type: X-NaftikoCapability
+    url: capabilities/external-approval-approval-tasks.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/external-approval-documents.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/external-approval-groups.yaml
+- aid: ariba-sourcing:ariba-sourcing-groups-api
+  name: Ariba Sourcing Groups API
+  description: Approval group membership retrieval
+  humanURL: https://help.sap.com/docs/ariba-apis
+  baseURL: https://openapi.ariba.com/api/sourcing-approval/v2/prod
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/ariba-sourcing-groups-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://help.sap.com/doc/69824194c55e4393870c5d3587aaf821/cloud/en-US/abdf297f281243ed9f8f3ead706a74d3.pdf
   - type: JSONSchema
     url: json-schema/external-approval-api-approval-task-schema.json
   - type: JSONSchema
@@ -58,6 +128,8 @@ apis:
   - type: X-NaftikoCapability
     url: capabilities/external-approval-groups.yaml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/ariba-sourcing/overview
 - type: AgenticAccess
   url: agentic-access/ariba-sourcing-agentic-access.yml
 - type: VulnerabilityDisclosure
