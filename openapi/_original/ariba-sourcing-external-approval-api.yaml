@@ -1,0 +1,818 @@
+openapi: 3.0.3
+info:
+  title: Ariba Sourcing - External Approval API
+  description: >-
+    The External Approval API for Sourcing and Supplier Management enables
+    client applications to approve or deny SAP Ariba strategic sourcing
+    solutions approval tasks. It supports external approval tasks in sourcing
+    projects, contract workspaces, engagement risk assessment, and all types of
+    supplier management projects.
+  version: v2 - 2026-02
+  contact:
+    name: SAP Ariba Developer Support
+    url: https://developer.ariba.com
+  x-generated-from: documentation
+  x-last-validated: '2026-04-19'
+servers:
+  - url: https://openapi.ariba.com/api/sourcing-approval/v2/prod
+    description: Production environment
+  - url: https://openapi.ariba.com/api/sourcing-approval/v2/sandbox
+    description: Sandbox environment
+security:
+  - OAuth2: []
+tags:
+  - name: Approval Tasks
+    description: External approval task retrieval and action operations
+  - name: Documents
+    description: Sourcing document and workspace retrieval
+  - name: Groups
+    description: Approval group membership retrieval
+paths:
+  /changes:
+    get:
+      operationId: listApprovalChanges
+      summary: Ariba Sourcing List Changed Approval Tasks
+      description: >-
+        Returns a list of external approval tasks that have changed state.
+        Activities that change the state of a task include submitting the task
+        or completing the approval flow. Rate limited to 20 req/sec, 400
+        req/min, 12000 req/hour, 40000 req/day.
+      tags:
+        - Approval Tasks
+      parameters:
+        - name: realm
+          in: query
+          required: true
+          description: The SAP Ariba realm name identifying your site.
+          schema:
+            type: string
+          example: mycompany-T
+        - name: needTotal
+          in: query
+          required: false
+          description: Whether to include total count in X-Total-Count response header.
+          schema:
+            type: boolean
+          example: true
+        - name: offset
+          in: query
+          required: false
+          description: Offset from the beginning of the result set for pagination.
+          schema:
+            type: integer
+          example: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum page size. Ignored if value is less than 10.
+          schema:
+            type: integer
+          example: 50
+        - name: lastChangeId
+          in: query
+          required: false
+          description: >-
+            The last change received in the previous response. Response includes
+            all changes since this ID. Default is 0.
+          schema:
+            type: string
+          example: '12345'
+        - name: $filter
+          in: query
+          required: false
+          description: >-
+            Filter approval tasks by solution area and type. See API
+            documentation for supported filter values.
+          schema:
+            type: string
+          example: documentType eq 'RFXDocument'
+      responses:
+        '200':
+          description: Successfully retrieved changed approval tasks.
+          headers:
+            X-Total-Count:
+              description: Total count of items when needTotal=true.
+              schema:
+                type: integer
+            X-Start-Index:
+              description: Starting index of the current page.
+              schema:
+                type: integer
+            X-Page-Size:
+              description: Page size of the current response.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalChangesResponse'
+              examples:
+                listApprovalChanges200Example:
+                  summary: Default listApprovalChanges 200 response
+                  x-microcks-default: true
+                  value:
+                    changes:
+                      - changeSequenceId: '12345'
+                        taskId: TASK-500123
+                        documentType: RFXDocument
+                        documentId: DOC-001234
+                        status: submitted
+                        fullURL: https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /pendingApprovables:
+    get:
+      operationId: listPendingApprovables
+      summary: Ariba Sourcing List Pending Approval Tasks
+      description: >-
+        Returns a list of external approval tasks that are active and pending
+        approval. Results can be filtered by user ID or document type.
+      tags:
+        - Approval Tasks
+      parameters:
+        - name: realm
+          in: query
+          required: true
+          description: The SAP Ariba realm name identifying your site.
+          schema:
+            type: string
+          example: mycompany-T
+        - name: user
+          in: query
+          required: false
+          description: >-
+            User ID. If specified, only approval tasks assigned to this user are
+            returned.
+          schema:
+            type: string
+          example: jsmith@example.com
+        - name: documentType
+          in: query
+          required: false
+          description: >-
+            Type of document to be approved. Values: Workspace, Folder,
+            RFXDocument, ContractContentDocument, ContractWorkspace,
+            ContractRequest.
+          schema:
+            type: string
+            enum:
+              - Workspace
+              - Folder
+              - RFXDocument
+              - ContractContentDocument
+              - ContractWorkspace
+              - ContractRequest
+          example: RFXDocument
+        - name: offset
+          in: query
+          required: false
+          description: Starting point within collection of results.
+          schema:
+            type: integer
+          example: 0
+        - name: limit
+          in: query
+          required: false
+          description: Maximum number of records. Range 0-100, default 100.
+          schema:
+            type: integer
+          example: 20
+        - name: resetStartPosition
+          in: query
+          required: false
+          description: When true, returns empty set if offset exceeds total records.
+          schema:
+            type: boolean
+          example: false
+      responses:
+        '200':
+          description: Successfully retrieved pending approval tasks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PendingApprovablesResponse'
+              examples:
+                listPendingApprovables200Example:
+                  summary: Default listPendingApprovables 200 response
+                  x-microcks-default: true
+                  value:
+                    tasks:
+                      - taskId: TASK-500123
+                        documentType: RFXDocument
+                        documentId: DOC-001234
+                        assignedTo: jsmith@example.com
+                        status: pending
+                        fullURL: https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /task/{entity_id}:
+    get:
+      operationId: getApprovalTask
+      summary: Ariba Sourcing Get Approval Task Details
+      description: >-
+        Retrieves details about the specified external approval task. The
+        entity_id is the task ID returned from GET /changes or GET
+        /pendingApprovables.
+      tags:
+        - Approval Tasks
+      parameters:
+        - name: entity_id
+          in: path
+          required: true
+          description: The task ID as returned from GET /changes or GET /pendingApprovables.
+          schema:
+            type: string
+          example: TASK-500123
+        - name: realm
+          in: query
+          required: true
+          description: The SAP Ariba realm name.
+          schema:
+            type: string
+          example: mycompany-T
+      responses:
+        '200':
+          description: Successfully retrieved task details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalTask'
+              examples:
+                getApprovalTask200Example:
+                  summary: Default getApprovalTask 200 response
+                  x-microcks-default: true
+                  value:
+                    taskId: TASK-500123
+                    documentType: RFXDocument
+                    documentId: DOC-001234
+                    status: pending
+                    approvalRequests:
+                      - approvers:
+                          - userId: jsmith@example.com
+                            name: Jane Smith
+        '404':
+          description: Task not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /{entity_type}/{entity_id}:
+    get:
+      operationId: getApprovableDocument
+      summary: Ariba Sourcing Get Approvable Document Details
+      description: >-
+        Retrieves details about the specified approvable document, sourcing
+        event, or project. Use $select parameter for sourcing events to get
+        details about specific parts such as line items or invited suppliers.
+      tags:
+        - Documents
+      parameters:
+        - name: entity_type
+          in: path
+          required: true
+          description: >-
+            Type of item to be approved. Examples: Workspace, RFXDocument,
+            ContractWorkspace, Folder.
+          schema:
+            type: string
+          example: Workspace
+        - name: entity_id
+          in: path
+          required: true
+          description: The ID of the item to be approved.
+          schema:
+            type: string
+          example: WS500123
+        - name: realm
+          in: query
+          required: true
+          description: The SAP Ariba realm name.
+          schema:
+            type: string
+          example: mycompany-T
+        - name: $select
+          in: query
+          required: false
+          description: >-
+            For sourcing events, specifies which parts of the event to retrieve
+            (e.g., line items, invited suppliers).
+          schema:
+            type: string
+          example: lineItems,suppliers
+      responses:
+        '200':
+          description: Successfully retrieved approvable document details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovableDocument'
+              examples:
+                getApprovableDocument200Example:
+                  summary: Default getApprovableDocument 200 response
+                  x-microcks-default: true
+                  value:
+                    id: WS500123
+                    type: Workspace
+                    title: Q1 2026 Office Supplies RFQ
+                    status: pending
+                    realm: mycompany-T
+        '404':
+          description: Document not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /action:
+    post:
+      operationId: submitApprovalAction
+      summary: Ariba Sourcing Submit Approval Action
+      description: >-
+        Posts the action to be taken for the approval task on behalf of the
+        user in the approval flow. Options are to approve, deny, and include
+        comments.
+      tags:
+        - Approval Tasks
+      parameters:
+        - name: realm
+          in: query
+          required: true
+          description: The SAP Ariba realm name.
+          schema:
+            type: string
+          example: mycompany-T
+      requestBody:
+        required: true
+        description: Approval action to submit.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApprovalActionRequest'
+            examples:
+              submitApprovalActionRequestExample:
+                summary: Default submitApprovalAction request
+                x-microcks-default: true
+                value:
+                  taskId: TASK-500123
+                  action: approve
+                  userId: jsmith@example.com
+                  comment: Approved per procurement policy.
+      responses:
+        '200':
+          description: Successfully submitted approval action.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApprovalActionResponse'
+              examples:
+                submitApprovalAction200Example:
+                  summary: Default submitApprovalAction 200 response
+                  x-microcks-default: true
+                  value:
+                    taskId: TASK-500123
+                    action: approve
+                    status: submitted
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /Document/{documentId}/attachments/{docAttachmentId}:
+    get:
+      operationId: downloadAttachment
+      summary: Ariba Sourcing Download Approval Document Attachment
+      description: >-
+        Downloads an attachment associated with an approvable document. The
+        documentId is from the GET /{entity_type}/{entity_id} response and
+        docAttachmentId is from the GET /document/{documentId} response.
+      tags:
+        - Documents
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          description: The document ID from which to download the attachment.
+          schema:
+            type: string
+          example: DOC-001234
+        - name: docAttachmentId
+          in: path
+          required: true
+          description: The attachment ID.
+          schema:
+            type: string
+          example: ATTACH-001
+        - name: realm
+          in: query
+          required: true
+          description: The SAP Ariba realm name.
+          schema:
+            type: string
+          example: mycompany-T
+      responses:
+        '200':
+          description: Attachment file content.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Attachment not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /groups/{group_id}/members:
+    get:
+      operationId: listGroupMembers
+      summary: Ariba Sourcing List Approval Group Members
+      description: >-
+        Retrieves user members of a specific approval group. The group_id is
+        available in the approvalRequests/approvers/group/id path of the GET
+        /task/{entity_id} response.
+      tags:
+        - Groups
+      parameters:
+        - name: group_id
+          in: path
+          required: true
+          description: The group identifier.
+          schema:
+            type: string
+          example: GROUP-001
+        - name: realm
+          in: query
+          required: true
+          description: The SAP Ariba realm name.
+          schema:
+            type: string
+          example: mycompany-T
+      responses:
+        '200':
+          description: Successfully retrieved group members.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupMembersResponse'
+              examples:
+                listGroupMembers200Example:
+                  summary: Default listGroupMembers 200 response
+                  x-microcks-default: true
+                  value:
+                    groupId: GROUP-001
+                    members:
+                      - userId: jsmith@example.com
+                        name: Jane Smith
+                      - userId: bjones@example.com
+                        name: Bob Jones
+        '404':
+          description: Group not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: >-
+        OAuth 2.0 authentication. Obtain access token from
+        https://api.ariba.com/v2/oauth/token using client credentials.
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.ariba.com/v2/oauth/token
+          scopes: {}
+  schemas:
+    ApprovalChangesResponse:
+      title: ApprovalChangesResponse
+      description: Response containing changed approval tasks.
+      type: object
+      properties:
+        changes:
+          type: array
+          description: List of approval task changes.
+          items:
+            $ref: '#/components/schemas/ApprovalChange'
+    ApprovalChange:
+      title: ApprovalChange
+      description: An approval task state change record.
+      type: object
+      properties:
+        changeSequenceId:
+          type: string
+          description: Sequence ID of the change for pagination.
+          example: '12345'
+        taskId:
+          type: string
+          description: Task identifier.
+          example: TASK-500123
+        documentType:
+          type: string
+          description: Type of document being approved.
+          example: RFXDocument
+        documentId:
+          type: string
+          description: Document identifier.
+          example: DOC-001234
+        status:
+          type: string
+          description: Current task status.
+          example: submitted
+        fullURL:
+          type: string
+          description: Full URL to view the approvable in the SAP Ariba UI.
+          example: https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace
+    PendingApprovablesResponse:
+      title: PendingApprovablesResponse
+      description: Response containing pending approval tasks.
+      type: object
+      properties:
+        tasks:
+          type: array
+          description: List of pending approval tasks.
+          items:
+            $ref: '#/components/schemas/PendingApprovalTask'
+    PendingApprovalTask:
+      title: PendingApprovalTask
+      description: A pending external approval task.
+      type: object
+      properties:
+        taskId:
+          type: string
+          description: Task identifier.
+          example: TASK-500123
+        documentType:
+          type: string
+          description: Type of document being approved.
+          example: RFXDocument
+        documentId:
+          type: string
+          description: Document identifier.
+          example: DOC-001234
+        assignedTo:
+          type: string
+          description: User assigned to this task.
+          example: jsmith@example.com
+        status:
+          type: string
+          description: Task status.
+          example: pending
+        fullURL:
+          type: string
+          description: Full URL to view the approvable in the SAP Ariba UI.
+          example: https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace
+    ApprovalTask:
+      title: ApprovalTask
+      description: Details about an external approval task.
+      type: object
+      properties:
+        taskId:
+          type: string
+          description: Task identifier.
+          example: TASK-500123
+        documentType:
+          type: string
+          description: Type of document being approved.
+          example: RFXDocument
+        documentId:
+          type: string
+          description: Document identifier.
+          example: DOC-001234
+        status:
+          type: string
+          description: Task status.
+          example: pending
+        approvalRequests:
+          type: array
+          description: Approval request entries with approver details.
+          items:
+            $ref: '#/components/schemas/ApprovalRequest'
+    ApprovalRequest:
+      title: ApprovalRequest
+      description: An approval request entry.
+      type: object
+      properties:
+        approvers:
+          type: array
+          description: List of approvers.
+          items:
+            $ref: '#/components/schemas/Approver'
+    Approver:
+      title: Approver
+      description: An individual or group approver.
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User identifier.
+          example: jsmith@example.com
+        name:
+          type: string
+          description: Approver display name.
+          example: Jane Smith
+    ApprovableDocument:
+      title: ApprovableDocument
+      description: An approvable document or project.
+      type: object
+      properties:
+        id:
+          type: string
+          description: Document identifier.
+          example: WS500123
+        type:
+          type: string
+          description: Document type.
+          example: Workspace
+        title:
+          type: string
+          description: Document title.
+          example: Q1 2026 Office Supplies RFQ
+        status:
+          type: string
+          description: Document status.
+          example: pending
+        realm:
+          type: string
+          description: SAP Ariba realm name.
+          example: mycompany-T
+    ApprovalActionRequest:
+      title: ApprovalActionRequest
+      description: Request body for submitting an approval action.
+      type: object
+      required:
+        - taskId
+        - action
+        - userId
+      properties:
+        taskId:
+          type: string
+          description: Task identifier.
+          example: TASK-500123
+        action:
+          type: string
+          description: Action to take.
+          enum:
+            - approve
+            - deny
+          example: approve
+        userId:
+          type: string
+          description: User ID submitting the action.
+          example: jsmith@example.com
+        comment:
+          type: string
+          description: Optional comment for the action.
+          example: Approved per procurement policy.
+    ApprovalActionResponse:
+      title: ApprovalActionResponse
+      description: Response from submitting an approval action.
+      type: object
+      properties:
+        taskId:
+          type: string
+          description: Task identifier.
+          example: TASK-500123
+        action:
+          type: string
+          description: Action submitted.
+          example: approve
+        status:
+          type: string
+          description: Result status.
+          example: submitted
+    GroupMembersResponse:
+      title: GroupMembersResponse
+      description: Response containing group members.
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Group identifier.
+          example: GROUP-001
+        members:
+          type: array
+          description: List of group member users.
+          items:
+            $ref: '#/components/schemas/GroupMember'
+    GroupMember:
+      title: GroupMember
+      description: A member of an approval group.
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User identifier.
+          example: jsmith@example.com
+        name:
+          type: string
+          description: User display name.
+          example: Jane Smith
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response.
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message.
+          example: Bad Request

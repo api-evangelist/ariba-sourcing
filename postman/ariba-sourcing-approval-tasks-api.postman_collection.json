@@ -1,0 +1,1415 @@
+{
+  "info": {
+    "_postman_id": "5ffe165a-dd8f-44d5-8e60-917f2e6cee27",
+    "name": "Ariba Sourcing - External Approval Approval Tasks API",
+    "description": "The External Approval API for Sourcing and Supplier Management enables client applications to approve or deny SAP Ariba strategic sourcing solutions approval tasks. It supports external approval tasks in sourcing projects, contract workspaces, engagement risk assessment, and all types of supplier management projects.\n\nContact Support:\n Name: SAP Ariba Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:48.000Z",
+    "updatedAt": "2026-07-28T01:04:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5ffe165a-dd8f-44d5-8e60-917f2e6cee27"
+  },
+  "item": [
+    {
+      "name": "changes",
+      "item": [
+        {
+          "name": "Ariba Sourcing List Changed Approval Tasks",
+          "id": "cd92f88c-78a1-429c-9253-5e2fecfe0e3c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/changes?realm=<string>&needTotal=<boolean>&offset=<integer>&limit=<integer>&lastChangeId=<string>&$filter=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "changes"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The SAP Ariba realm name identifying your site.",
+                  "key": "realm",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Whether to include total count in X-Total-Count response header.",
+                  "key": "needTotal",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "Offset from the beginning of the result set for pagination.",
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Maximum page size. Ignored if value is less than 10.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "The last change received in the previous response. Response includes all changes since this ID. Default is 0.",
+                  "key": "lastChangeId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter approval tasks by solution area and type. See API documentation for supported filter values.",
+                  "key": "$filter",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of external approval tasks that have changed state. Activities that change the state of a task include submitting the task or completing the approval flow. Rate limited to 20 req/sec, 400 req/min, 12000 req/hour, 40000 req/day."
+          },
+          "response": [
+            {
+              "id": "6944c85b-8fae-4013-88c2-d964b44d6e0f",
+              "name": "Successfully retrieved changed approval tasks.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/changes?realm=<string>&needTotal=<boolean>&offset=<integer>&limit=<integer>&lastChangeId=<string>&$filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "changes"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Whether to include total count in X-Total-Count response header.",
+                      "key": "needTotal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Offset from the beginning of the result set for pagination.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum page size. Ignored if value is less than 10.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The last change received in the previous response. Response includes all changes since this ID. Default is 0.",
+                      "key": "lastChangeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter approval tasks by solution area and type. See API documentation for supported filter values.",
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Total count of items when needTotal=true.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Total-Count",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Starting index of the current page.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Start-Index",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Page size of the current response.",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Page-Size",
+                  "value": "<integer>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"changes\": [\n    {\n      \"changeSequenceId\": \"<string>\",\n      \"taskId\": \"<string>\",\n      \"documentType\": \"<string>\",\n      \"documentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"fullURL\": \"<string>\"\n    },\n    {\n      \"changeSequenceId\": \"<string>\",\n      \"taskId\": \"<string>\",\n      \"documentType\": \"<string>\",\n      \"documentId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"fullURL\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-6944c85b-8fae-4013-88c2-d964b44d6e0f"
+            },
+            {
+              "id": "5ca76c5f-47e7-46f5-b487-9341a0eecfd9",
+              "name": "Bad Request.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/changes?realm=<string>&needTotal=<boolean>&offset=<integer>&limit=<integer>&lastChangeId=<string>&$filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "changes"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Whether to include total count in X-Total-Count response header.",
+                      "key": "needTotal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Offset from the beginning of the result set for pagination.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum page size. Ignored if value is less than 10.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The last change received in the previous response. Response includes all changes since this ID. Default is 0.",
+                      "key": "lastChangeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter approval tasks by solution area and type. See API documentation for supported filter values.",
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-5ca76c5f-47e7-46f5-b487-9341a0eecfd9"
+            },
+            {
+              "id": "dfc4931e-df01-44d3-afd7-0b062926bfd0",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/changes?realm=<string>&needTotal=<boolean>&offset=<integer>&limit=<integer>&lastChangeId=<string>&$filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "changes"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Whether to include total count in X-Total-Count response header.",
+                      "key": "needTotal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Offset from the beginning of the result set for pagination.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum page size. Ignored if value is less than 10.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The last change received in the previous response. Response includes all changes since this ID. Default is 0.",
+                      "key": "lastChangeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter approval tasks by solution area and type. See API documentation for supported filter values.",
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-dfc4931e-df01-44d3-afd7-0b062926bfd0"
+            },
+            {
+              "id": "e2455131-95a9-4467-9ad4-2efea489c7ba",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/changes?realm=<string>&needTotal=<boolean>&offset=<integer>&limit=<integer>&lastChangeId=<string>&$filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "changes"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Whether to include total count in X-Total-Count response header.",
+                      "key": "needTotal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Offset from the beginning of the result set for pagination.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum page size. Ignored if value is less than 10.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The last change received in the previous response. Response includes all changes since this ID. Default is 0.",
+                      "key": "lastChangeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter approval tasks by solution area and type. See API documentation for supported filter values.",
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-e2455131-95a9-4467-9ad4-2efea489c7ba"
+            },
+            {
+              "id": "0b547a24-9062-4036-b7d6-c6899115d2a5",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/changes?realm=<string>&needTotal=<boolean>&offset=<integer>&limit=<integer>&lastChangeId=<string>&$filter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "changes"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Whether to include total count in X-Total-Count response header.",
+                      "key": "needTotal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Offset from the beginning of the result set for pagination.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum page size. Ignored if value is less than 10.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "The last change received in the previous response. Response includes all changes since this ID. Default is 0.",
+                      "key": "lastChangeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter approval tasks by solution area and type. See API documentation for supported filter values.",
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-0b547a24-9062-4036-b7d6-c6899115d2a5"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:48.000Z",
+          "updatedAt": "2026-07-28T01:04:48.000Z",
+          "uid": "35240-cd92f88c-78a1-429c-9253-5e2fecfe0e3c"
+        }
+      ],
+      "id": "2da6d92a-fc0b-49c1-9e56-e0ba927aafb3",
+      "createdAt": "2026-07-28T01:04:48.000Z",
+      "updatedAt": "2026-07-28T01:04:48.000Z",
+      "uid": "35240-2da6d92a-fc0b-49c1-9e56-e0ba927aafb3"
+    },
+    {
+      "name": "pendingApprovables",
+      "item": [
+        {
+          "name": "Ariba Sourcing List Pending Approval Tasks",
+          "id": "15a96c8c-1412-461d-a5ff-3e144854a89b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pendingApprovables?realm=<string>&user=<string>&documentType=ContractContentDocument&offset=<integer>&limit=<integer>&resetStartPosition=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pendingApprovables"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The SAP Ariba realm name identifying your site.",
+                  "key": "realm",
+                  "value": "<string>"
+                },
+                {
+                  "description": "User ID. If specified, only approval tasks assigned to this user are returned.",
+                  "key": "user",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Type of document to be approved. Values: Workspace, Folder, RFXDocument, ContractContentDocument, ContractWorkspace, ContractRequest.",
+                  "key": "documentType",
+                  "value": "ContractContentDocument"
+                },
+                {
+                  "description": "Starting point within collection of results.",
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Maximum number of records. Range 0-100, default 100.",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "When true, returns empty set if offset exceeds total records.",
+                  "key": "resetStartPosition",
+                  "value": "<boolean>"
+                }
+              ]
+            },
+            "description": "Returns a list of external approval tasks that are active and pending approval. Results can be filtered by user ID or document type."
+          },
+          "response": [
+            {
+              "id": "4bf91d59-4aeb-4d97-b2ce-948ee25c9e20",
+              "name": "Successfully retrieved pending approval tasks.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/pendingApprovables?realm=<string>&user=<string>&documentType=ContractContentDocument&offset=<integer>&limit=<integer>&resetStartPosition=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pendingApprovables"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "User ID. If specified, only approval tasks assigned to this user are returned.",
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Type of document to be approved. Values: Workspace, Folder, RFXDocument, ContractContentDocument, ContractWorkspace, ContractRequest.",
+                      "key": "documentType",
+                      "value": "ContractContentDocument"
+                    },
+                    {
+                      "description": "Starting point within collection of results.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum number of records. Range 0-100, default 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "When true, returns empty set if offset exceeds total records.",
+                      "key": "resetStartPosition",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"tasks\": [\n    {\n      \"taskId\": \"<string>\",\n      \"documentType\": \"<string>\",\n      \"documentId\": \"<string>\",\n      \"assignedTo\": \"<string>\",\n      \"status\": \"<string>\",\n      \"fullURL\": \"<string>\"\n    },\n    {\n      \"taskId\": \"<string>\",\n      \"documentType\": \"<string>\",\n      \"documentId\": \"<string>\",\n      \"assignedTo\": \"<string>\",\n      \"status\": \"<string>\",\n      \"fullURL\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-4bf91d59-4aeb-4d97-b2ce-948ee25c9e20"
+            },
+            {
+              "id": "6bea44df-d2ed-4635-96b5-5023e18146fc",
+              "name": "Bad Request.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/pendingApprovables?realm=<string>&user=<string>&documentType=ContractContentDocument&offset=<integer>&limit=<integer>&resetStartPosition=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pendingApprovables"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "User ID. If specified, only approval tasks assigned to this user are returned.",
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Type of document to be approved. Values: Workspace, Folder, RFXDocument, ContractContentDocument, ContractWorkspace, ContractRequest.",
+                      "key": "documentType",
+                      "value": "ContractContentDocument"
+                    },
+                    {
+                      "description": "Starting point within collection of results.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum number of records. Range 0-100, default 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "When true, returns empty set if offset exceeds total records.",
+                      "key": "resetStartPosition",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-6bea44df-d2ed-4635-96b5-5023e18146fc"
+            },
+            {
+              "id": "9f3b6618-d241-45ff-bdd4-2460cad7b1c3",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/pendingApprovables?realm=<string>&user=<string>&documentType=ContractContentDocument&offset=<integer>&limit=<integer>&resetStartPosition=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pendingApprovables"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "User ID. If specified, only approval tasks assigned to this user are returned.",
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Type of document to be approved. Values: Workspace, Folder, RFXDocument, ContractContentDocument, ContractWorkspace, ContractRequest.",
+                      "key": "documentType",
+                      "value": "ContractContentDocument"
+                    },
+                    {
+                      "description": "Starting point within collection of results.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum number of records. Range 0-100, default 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "When true, returns empty set if offset exceeds total records.",
+                      "key": "resetStartPosition",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-9f3b6618-d241-45ff-bdd4-2460cad7b1c3"
+            },
+            {
+              "id": "b0a696e1-34a1-48cd-bd28-da2fb4876bff",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/pendingApprovables?realm=<string>&user=<string>&documentType=ContractContentDocument&offset=<integer>&limit=<integer>&resetStartPosition=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pendingApprovables"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name identifying your site.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "User ID. If specified, only approval tasks assigned to this user are returned.",
+                      "key": "user",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Type of document to be approved. Values: Workspace, Folder, RFXDocument, ContractContentDocument, ContractWorkspace, ContractRequest.",
+                      "key": "documentType",
+                      "value": "ContractContentDocument"
+                    },
+                    {
+                      "description": "Starting point within collection of results.",
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Maximum number of records. Range 0-100, default 100.",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "When true, returns empty set if offset exceeds total records.",
+                      "key": "resetStartPosition",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-b0a696e1-34a1-48cd-bd28-da2fb4876bff"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:48.000Z",
+          "updatedAt": "2026-07-28T01:04:48.000Z",
+          "uid": "35240-15a96c8c-1412-461d-a5ff-3e144854a89b"
+        }
+      ],
+      "id": "a8855512-5baa-4987-a8c7-5cca91dec56e",
+      "createdAt": "2026-07-28T01:04:48.000Z",
+      "updatedAt": "2026-07-28T01:04:48.000Z",
+      "uid": "35240-a8855512-5baa-4987-a8c7-5cca91dec56e"
+    },
+    {
+      "name": "task",
+      "item": [
+        {
+          "name": "{entity_id}",
+          "item": [
+            {
+              "name": "Ariba Sourcing Get Approval Task Details",
+              "id": "fe784988-1711-4e67-9c80-8a813c9cc9eb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/task/:entity_id?realm=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "task",
+                    ":entity_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name.",
+                      "key": "realm",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "2f9a37c4-f62c-4afc-b3ad-27af0a0a9b9c",
+                      "key": "entity_id",
+                      "value": "<string>",
+                      "description": "(Required) The task ID as returned from GET /changes or GET /pendingApprovables."
+                    }
+                  ]
+                },
+                "description": "Retrieves details about the specified external approval task. The entity_id is the task ID returned from GET /changes or GET /pendingApprovables."
+              },
+              "response": [
+                {
+                  "id": "bc290af8-9db9-4b36-bfa2-5b66ceec9269",
+                  "name": "Successfully retrieved task details.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/:entity_id?realm=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        ":entity_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name.",
+                          "key": "realm",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"taskId\": \"<string>\",\n  \"documentType\": \"<string>\",\n  \"documentId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"approvalRequests\": [\n    {\n      \"approvers\": [\n        {\n          \"userId\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"userId\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"approvers\": [\n        {\n          \"userId\": \"<string>\",\n          \"name\": \"<string>\"\n        },\n        {\n          \"userId\": \"<string>\",\n          \"name\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:04:48.000Z",
+                  "updatedAt": "2026-07-28T01:04:48.000Z",
+                  "uid": "35240-bc290af8-9db9-4b36-bfa2-5b66ceec9269"
+                },
+                {
+                  "id": "258e5ab1-dca7-4d66-beaa-9512bb60be73",
+                  "name": "Task not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/:entity_id?realm=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        ":entity_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name.",
+                          "key": "realm",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:04:48.000Z",
+                  "updatedAt": "2026-07-28T01:04:48.000Z",
+                  "uid": "35240-258e5ab1-dca7-4d66-beaa-9512bb60be73"
+                },
+                {
+                  "id": "25f2fa96-ac15-4e82-9a74-e42612990388",
+                  "name": "Internal Server Error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/task/:entity_id?realm=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "task",
+                        ":entity_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name.",
+                          "key": "realm",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:04:48.000Z",
+                  "updatedAt": "2026-07-28T01:04:48.000Z",
+                  "uid": "35240-25f2fa96-ac15-4e82-9a74-e42612990388"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-fe784988-1711-4e67-9c80-8a813c9cc9eb"
+            }
+          ],
+          "id": "19a0cb88-023d-45aa-a77a-e3865b3d010a",
+          "createdAt": "2026-07-28T01:04:48.000Z",
+          "updatedAt": "2026-07-28T01:04:48.000Z",
+          "uid": "35240-19a0cb88-023d-45aa-a77a-e3865b3d010a"
+        }
+      ],
+      "id": "1b115cec-e0ad-4d62-83f2-12607c423d8e",
+      "createdAt": "2026-07-28T01:04:48.000Z",
+      "updatedAt": "2026-07-28T01:04:48.000Z",
+      "uid": "35240-1b115cec-e0ad-4d62-83f2-12607c423d8e"
+    },
+    {
+      "name": "action",
+      "item": [
+        {
+          "name": "Ariba Sourcing Submit Approval Action",
+          "id": "4185af74-3343-48a4-a11c-6d6cf931f1d4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"taskId\": \"<string>\",\n  \"action\": \"approve\",\n  \"userId\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/action?realm=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "action"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The SAP Ariba realm name.",
+                  "key": "realm",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Posts the action to be taken for the approval task on behalf of the user in the approval flow. Options are to approve, deny, and include comments."
+          },
+          "response": [
+            {
+              "id": "4d914ace-e586-4f90-8ced-318854f08f97",
+              "name": "Successfully submitted approval action.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskId\": \"<string>\",\n  \"action\": \"approve\",\n  \"userId\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/action?realm=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "action"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name.",
+                      "key": "realm",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"taskId\": \"<string>\",\n  \"action\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-4d914ace-e586-4f90-8ced-318854f08f97"
+            },
+            {
+              "id": "5f92658c-d7a6-4e5f-bca7-366c95694603",
+              "name": "Bad Request.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskId\": \"<string>\",\n  \"action\": \"approve\",\n  \"userId\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/action?realm=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "action"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name.",
+                      "key": "realm",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-5f92658c-d7a6-4e5f-bca7-366c95694603"
+            },
+            {
+              "id": "388caf0c-f80c-4c9b-8d9c-b5341ba9ac04",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskId\": \"<string>\",\n  \"action\": \"approve\",\n  \"userId\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/action?realm=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "action"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name.",
+                      "key": "realm",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-388caf0c-f80c-4c9b-8d9c-b5341ba9ac04"
+            },
+            {
+              "id": "06c312fe-3690-484c-84c8-8aae32af79a8",
+              "name": "Internal Server Error.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taskId\": \"<string>\",\n  \"action\": \"approve\",\n  \"userId\": \"<string>\",\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/action?realm=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "action"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name.",
+                      "key": "realm",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:04:48.000Z",
+              "updatedAt": "2026-07-28T01:04:48.000Z",
+              "uid": "35240-06c312fe-3690-484c-84c8-8aae32af79a8"
+            }
+          ],
+          "createdAt": "2026-07-28T01:04:48.000Z",
+          "updatedAt": "2026-07-28T01:04:48.000Z",
+          "uid": "35240-4185af74-3343-48a4-a11c-6d6cf931f1d4"
+        }
+      ],
+      "id": "e5863deb-dc30-4d3c-b60d-ad6932758f17",
+      "createdAt": "2026-07-28T01:04:48.000Z",
+      "updatedAt": "2026-07-28T01:04:48.000Z",
+      "uid": "35240-e5863deb-dc30-4d3c-b60d-ad6932758f17"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.ariba.com/v2/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://openapi.ariba.com/api/sourcing-approval/v2/prod"
+    }
+  ]
+}

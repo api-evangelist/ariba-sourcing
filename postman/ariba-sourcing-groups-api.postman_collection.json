@@ -1,0 +1,278 @@
+{
+  "info": {
+    "_postman_id": "27820a44-d4fc-478f-97d0-69b58f97e516",
+    "name": "Ariba Sourcing - External Approval Approval Tasks Groups API",
+    "description": "The External Approval API for Sourcing and Supplier Management enables client applications to approve or deny SAP Ariba strategic sourcing solutions approval tasks. It supports external approval tasks in sourcing projects, contract workspaces, engagement risk assessment, and all types of supplier management projects.\n\nContact Support:\n Name: SAP Ariba Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:50.000Z",
+    "updatedAt": "2026-07-28T01:04:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-27820a44-d4fc-478f-97d0-69b58f97e516"
+  },
+  "item": [
+    {
+      "name": "groups",
+      "item": [
+        {
+          "name": "{group_id}",
+          "item": [
+            {
+              "name": "members",
+              "item": [
+                {
+                  "name": "Ariba Sourcing List Approval Group Members",
+                  "id": "20f6bb69-87a7-4075-bf0f-1a4883c65291",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/groups/:group_id/members?realm=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "groups",
+                        ":group_id",
+                        "members"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name.",
+                          "key": "realm",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "ed769f34-1444-468b-9028-f36ab12df9b0",
+                          "key": "group_id",
+                          "value": "<string>",
+                          "description": "(Required) The group identifier."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves user members of a specific approval group. The group_id is available in the approvalRequests/approvers/group/id path of the GET /task/{entity_id} response."
+                  },
+                  "response": [
+                    {
+                      "id": "b83c9b1d-5bd7-41c4-a8db-08c64322ce2c",
+                      "name": "Successfully retrieved group members.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/groups/:group_id/members?realm=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "groups",
+                            ":group_id",
+                            "members"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The SAP Ariba realm name.",
+                              "key": "realm",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"groupId\": \"<string>\",\n  \"members\": [\n    {\n      \"userId\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"userId\": \"<string>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:04:51.000Z",
+                      "updatedAt": "2026-07-28T01:04:51.000Z",
+                      "uid": "35240-b83c9b1d-5bd7-41c4-a8db-08c64322ce2c"
+                    },
+                    {
+                      "id": "781b8e68-ee93-441e-a2b2-3d70bede3725",
+                      "name": "Group not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/groups/:group_id/members?realm=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "groups",
+                            ":group_id",
+                            "members"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The SAP Ariba realm name.",
+                              "key": "realm",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:04:51.000Z",
+                      "updatedAt": "2026-07-28T01:04:51.000Z",
+                      "uid": "35240-781b8e68-ee93-441e-a2b2-3d70bede3725"
+                    },
+                    {
+                      "id": "d7ec9960-4980-4691-b51f-067accb6684c",
+                      "name": "Internal Server Error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/groups/:group_id/members?realm=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "groups",
+                            ":group_id",
+                            "members"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The SAP Ariba realm name.",
+                              "key": "realm",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "group_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:04:51.000Z",
+                      "updatedAt": "2026-07-28T01:04:51.000Z",
+                      "uid": "35240-d7ec9960-4980-4691-b51f-067accb6684c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:04:50.000Z",
+                  "updatedAt": "2026-07-28T01:04:50.000Z",
+                  "uid": "35240-20f6bb69-87a7-4075-bf0f-1a4883c65291"
+                }
+              ],
+              "id": "1dce011f-fcc5-4629-adc3-506cf8050700",
+              "createdAt": "2026-07-28T01:04:50.000Z",
+              "updatedAt": "2026-07-28T01:04:50.000Z",
+              "uid": "35240-1dce011f-fcc5-4629-adc3-506cf8050700"
+            }
+          ],
+          "id": "64552164-5e3f-470c-8259-20bffc7abce9",
+          "createdAt": "2026-07-28T01:04:50.000Z",
+          "updatedAt": "2026-07-28T01:04:50.000Z",
+          "uid": "35240-64552164-5e3f-470c-8259-20bffc7abce9"
+        }
+      ],
+      "id": "d3848304-f5a4-40c8-bf96-645687f52c14",
+      "createdAt": "2026-07-28T01:04:50.000Z",
+      "updatedAt": "2026-07-28T01:04:50.000Z",
+      "uid": "35240-d3848304-f5a4-40c8-bf96-645687f52c14"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.ariba.com/v2/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://openapi.ariba.com/api/sourcing-approval/v2/prod"
+    }
+  ]
+}

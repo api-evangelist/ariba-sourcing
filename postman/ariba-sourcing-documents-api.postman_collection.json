@@ -1,0 +1,571 @@
+{
+  "info": {
+    "_postman_id": "2e7f5844-f17a-4939-9b92-da5a2574878e",
+    "name": "Ariba Sourcing - External Approval Approval Tasks Documents API",
+    "description": "The External Approval API for Sourcing and Supplier Management enables client applications to approve or deny SAP Ariba strategic sourcing solutions approval tasks. It supports external approval tasks in sourcing projects, contract workspaces, engagement risk assessment, and all types of supplier management projects.\n\nContact Support:\n Name: SAP Ariba Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:04:49.000Z",
+    "updatedAt": "2026-07-28T01:04:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2e7f5844-f17a-4939-9b92-da5a2574878e"
+  },
+  "item": [
+    {
+      "name": "{entity_type}",
+      "item": [
+        {
+          "name": "{entity_id}",
+          "item": [
+            {
+              "name": "Ariba Sourcing Get Approvable Document Details",
+              "id": "c5c5a708-515d-465a-9b96-1c8b175d27f8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:entity_type/:entity_id?realm=<string>&$select=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":entity_type",
+                    ":entity_id"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SAP Ariba realm name.",
+                      "key": "realm",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "For sourcing events, specifies which parts of the event to retrieve (e.g., line items, invited suppliers).",
+                      "key": "$select",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "c9f620e3-3421-4e11-a7f5-ebc3508c84dd",
+                      "key": "entity_type",
+                      "value": "<string>",
+                      "description": "(Required) Type of item to be approved. Examples: Workspace, RFXDocument, ContractWorkspace, Folder."
+                    },
+                    {
+                      "id": "f5c06f92-0708-4470-a15c-46047426c229",
+                      "key": "entity_id",
+                      "value": "<string>",
+                      "description": "(Required) The ID of the item to be approved."
+                    }
+                  ]
+                },
+                "description": "Retrieves details about the specified approvable document, sourcing event, or project. Use $select parameter for sourcing events to get details about specific parts such as line items or invited suppliers."
+              },
+              "response": [
+                {
+                  "id": "514ed112-558c-4a37-906d-2830bdd968d1",
+                  "name": "Successfully retrieved approvable document details.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:entity_type/:entity_id?realm=<string>&$select=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":entity_type",
+                        ":entity_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name.",
+                          "key": "realm",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "For sourcing events, specifies which parts of the event to retrieve (e.g., line items, invited suppliers).",
+                          "key": "$select",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_type"
+                        },
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<string>\",\n  \"realm\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:04:49.000Z",
+                  "updatedAt": "2026-07-28T01:04:49.000Z",
+                  "uid": "35240-514ed112-558c-4a37-906d-2830bdd968d1"
+                },
+                {
+                  "id": "be3db2b2-0f52-4cc6-aa1c-5a77e0527e55",
+                  "name": "Document not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:entity_type/:entity_id?realm=<string>&$select=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":entity_type",
+                        ":entity_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name.",
+                          "key": "realm",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "For sourcing events, specifies which parts of the event to retrieve (e.g., line items, invited suppliers).",
+                          "key": "$select",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_type"
+                        },
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:04:49.000Z",
+                  "updatedAt": "2026-07-28T01:04:49.000Z",
+                  "uid": "35240-be3db2b2-0f52-4cc6-aa1c-5a77e0527e55"
+                },
+                {
+                  "id": "ab5c4646-475f-4d42-b739-f43f981be59b",
+                  "name": "Internal Server Error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:entity_type/:entity_id?realm=<string>&$select=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":entity_type",
+                        ":entity_id"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The SAP Ariba realm name.",
+                          "key": "realm",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "For sourcing events, specifies which parts of the event to retrieve (e.g., line items, invited suppliers).",
+                          "key": "$select",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "entity_type"
+                        },
+                        {
+                          "key": "entity_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:04:49.000Z",
+                  "updatedAt": "2026-07-28T01:04:49.000Z",
+                  "uid": "35240-ab5c4646-475f-4d42-b739-f43f981be59b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:04:49.000Z",
+              "updatedAt": "2026-07-28T01:04:49.000Z",
+              "uid": "35240-c5c5a708-515d-465a-9b96-1c8b175d27f8"
+            }
+          ],
+          "id": "b31aced5-d67c-4c29-ba95-326bbdc21b69",
+          "createdAt": "2026-07-28T01:04:49.000Z",
+          "updatedAt": "2026-07-28T01:04:49.000Z",
+          "uid": "35240-b31aced5-d67c-4c29-ba95-326bbdc21b69"
+        }
+      ],
+      "id": "cbeb2330-eed0-448b-8e2b-5986ccfe9c35",
+      "createdAt": "2026-07-28T01:04:49.000Z",
+      "updatedAt": "2026-07-28T01:04:49.000Z",
+      "uid": "35240-cbeb2330-eed0-448b-8e2b-5986ccfe9c35"
+    },
+    {
+      "name": "Document",
+      "item": [
+        {
+          "name": "{documentId}",
+          "item": [
+            {
+              "name": "attachments",
+              "item": [
+                {
+                  "name": "{docAttachmentId}",
+                  "item": [
+                    {
+                      "name": "Ariba Sourcing Download Approval Document Attachment",
+                      "id": "b0f30c1d-92eb-4fa6-aabe-f9ac71e785b5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/octet-stream"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/Document/:documentId/attachments/:docAttachmentId?realm=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "Document",
+                            ":documentId",
+                            "attachments",
+                            ":docAttachmentId"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) The SAP Ariba realm name.",
+                              "key": "realm",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "7ce6575b-beb4-4b22-989e-74c2d06a7832",
+                              "key": "documentId",
+                              "value": "<string>",
+                              "description": "(Required) The document ID from which to download the attachment."
+                            },
+                            {
+                              "id": "08881529-80ef-4a55-9cb8-64d099bd82a5",
+                              "key": "docAttachmentId",
+                              "value": "<string>",
+                              "description": "(Required) The attachment ID."
+                            }
+                          ]
+                        },
+                        "description": "Downloads an attachment associated with an approvable document. The documentId is from the GET /{entity_type}/{entity_id} response and docAttachmentId is from the GET /document/{documentId} response."
+                      },
+                      "response": [
+                        {
+                          "id": "0827edef-6ea8-485a-bc8b-e3017a34240a",
+                          "name": "Attachment file content.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/Document/:documentId/attachments/:docAttachmentId?realm=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "Document",
+                                ":documentId",
+                                "attachments",
+                                ":docAttachmentId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The SAP Ariba realm name.",
+                                  "key": "realm",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "documentId"
+                                },
+                                {
+                                  "key": "docAttachmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/octet-stream"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-07-28T01:04:49.000Z",
+                          "updatedAt": "2026-07-28T01:04:49.000Z",
+                          "uid": "35240-0827edef-6ea8-485a-bc8b-e3017a34240a"
+                        },
+                        {
+                          "id": "57d8736a-84e2-4d75-b385-da1f24222bcb",
+                          "name": "Attachment not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/Document/:documentId/attachments/:docAttachmentId?realm=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "Document",
+                                ":documentId",
+                                "attachments",
+                                ":docAttachmentId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The SAP Ariba realm name.",
+                                  "key": "realm",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "documentId"
+                                },
+                                {
+                                  "key": "docAttachmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:04:49.000Z",
+                          "updatedAt": "2026-07-28T01:04:49.000Z",
+                          "uid": "35240-57d8736a-84e2-4d75-b385-da1f24222bcb"
+                        },
+                        {
+                          "id": "f2f9b268-a1dc-4086-b747-1d8cc2cb0539",
+                          "name": "Internal Server Error.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/Document/:documentId/attachments/:docAttachmentId?realm=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "Document",
+                                ":documentId",
+                                "attachments",
+                                ":docAttachmentId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The SAP Ariba realm name.",
+                                  "key": "realm",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "documentId"
+                                },
+                                {
+                                  "key": "docAttachmentId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:04:49.000Z",
+                          "updatedAt": "2026-07-28T01:04:49.000Z",
+                          "uid": "35240-f2f9b268-a1dc-4086-b747-1d8cc2cb0539"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:04:49.000Z",
+                      "updatedAt": "2026-07-28T01:04:49.000Z",
+                      "uid": "35240-b0f30c1d-92eb-4fa6-aabe-f9ac71e785b5"
+                    }
+                  ],
+                  "id": "34ede65d-8be7-4793-8db2-31f42e4cd46c",
+                  "createdAt": "2026-07-28T01:04:49.000Z",
+                  "updatedAt": "2026-07-28T01:04:49.000Z",
+                  "uid": "35240-34ede65d-8be7-4793-8db2-31f42e4cd46c"
+                }
+              ],
+              "id": "bef1c882-d6fd-4bc5-9ddf-5f4e0f715086",
+              "createdAt": "2026-07-28T01:04:49.000Z",
+              "updatedAt": "2026-07-28T01:04:49.000Z",
+              "uid": "35240-bef1c882-d6fd-4bc5-9ddf-5f4e0f715086"
+            }
+          ],
+          "id": "5757a1f5-6ba6-43ae-9a4d-1465abbeda62",
+          "createdAt": "2026-07-28T01:04:49.000Z",
+          "updatedAt": "2026-07-28T01:04:49.000Z",
+          "uid": "35240-5757a1f5-6ba6-43ae-9a4d-1465abbeda62"
+        }
+      ],
+      "id": "f3fb3efd-09ca-4f0b-b5ac-ebede8684a62",
+      "createdAt": "2026-07-28T01:04:49.000Z",
+      "updatedAt": "2026-07-28T01:04:49.000Z",
+      "uid": "35240-f3fb3efd-09ca-4f0b-b5ac-ebede8684a62"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.ariba.com/v2/oauth/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://openapi.ariba.com/api/sourcing-approval/v2/prod"
+    }
+  ]
+}
