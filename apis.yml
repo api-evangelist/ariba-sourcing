@@ -59,12 +59,6 @@ apis:
     url: json-structure/external-approval-api-approvable-document-structure.json
   - type: JSONLD
     url: json-ld/ariba-sourcing-external-approval-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/external-approval-approval-tasks.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/external-approval-documents.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/external-approval-groups.yaml
 - aid: ariba-sourcing:ariba-sourcing-documents-api
   name: Ariba Sourcing Documents API
   description: Sourcing document and workspace retrieval
@@ -90,12 +84,6 @@ apis:
     url: json-structure/external-approval-api-approvable-document-structure.json
   - type: JSONLD
     url: json-ld/ariba-sourcing-external-approval-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/external-approval-approval-tasks.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/external-approval-documents.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/external-approval-groups.yaml
 - aid: ariba-sourcing:ariba-sourcing-groups-api
   name: Ariba Sourcing Groups API
   description: Approval group membership retrieval
@@ -121,12 +109,6 @@ apis:
     url: json-structure/external-approval-api-approvable-document-structure.json
   - type: JSONLD
     url: json-ld/ariba-sourcing-external-approval-api-context.jsonld
-  - type: X-NaftikoCapability
-    url: capabilities/external-approval-approval-tasks.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/external-approval-documents.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/external-approval-groups.yaml
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/ariba-sourcing/overview
