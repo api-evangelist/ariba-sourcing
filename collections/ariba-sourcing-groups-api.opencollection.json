@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ariba Sourcing - External Approval Approval Tasks Groups API",
+    "version": "v2 - 2026-02"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.ariba.com/v2/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ariba Sourcing List Approval Group Members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.ariba.com/api/sourcing-approval/v2/prod/groups/:group_id/members",
+            "params": [
+              {
+                "name": "group_id",
+                "value": "GROUP-001",
+                "type": "path",
+                "description": "The group identifier."
+              },
+              {
+                "name": "realm",
+                "value": "mycompany-T",
+                "type": "query",
+                "description": "The SAP Ariba realm name."
+              }
+            ]
+          },
+          "docs": "Retrieves user members of a specific approval group. The group_id is available in the approvalRequests/approvers/group/id path of the GET /task/{entity_id} response."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

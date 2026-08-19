@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ariba Sourcing - External Approval Approval Tasks API",
+    "version": "v2 - 2026-02"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.ariba.com/v2/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Approval Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ariba Sourcing List Changed Approval Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.ariba.com/api/sourcing-approval/v2/prod/changes",
+            "params": [
+              {
+                "name": "realm",
+                "value": "mycompany-T",
+                "type": "query",
+                "description": "The SAP Ariba realm name identifying your site."
+              },
+              {
+                "name": "needTotal",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to include total count in X-Total-Count response header."
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Offset from the beginning of the result set for pagination."
+              },
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "Maximum page size. Ignored if value is less than 10."
+              },
+              {
+                "name": "lastChangeId",
+                "value": "12345",
+                "type": "query",
+                "description": "The last change received in the previous response. Response includes all changes since this ID. Default is 0."
+              },
+              {
+                "name": "$filter",
+                "value": "documentType eq 'RFXDocument'",
+                "type": "query",
+                "description": "Filter approval tasks by solution area and type. See API documentation for supported filter values."
+              }
+            ]
+          },
+          "docs": "Returns a list of external approval tasks that have changed state. Activities that change the state of a task include submitting the task or completing the approval flow. Rate limited to 20 req/sec, 400 req/min, 12000 req/hour, 40000 req/day."
+        },
+        {
+          "info": {
+            "name": "Ariba Sourcing List Pending Approval Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.ariba.com/api/sourcing-approval/v2/prod/pendingApprovables",
+            "params": [
+              {
+                "name": "realm",
+                "value": "mycompany-T",
+                "type": "query",
+                "description": "The SAP Ariba realm name identifying your site."
+              },
+              {
+                "name": "user",
+                "value": "jsmith@example.com",
+                "type": "query",
+                "description": "User ID. If specified, only approval tasks assigned to this user are returned."
+              },
+              {
+                "name": "documentType",
+                "value": "RFXDocument",
+                "type": "query",
+                "description": "Type of document to be approved. Values: Workspace, Folder, RFXDocument, ContractContentDocument, ContractWorkspace, ContractRequest."
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Starting point within collection of results."
+              },
+              {
+                "name": "limit",
+                "value": "20",
+                "type": "query",
+                "description": "Maximum number of records. Range 0-100, default 100."
+              },
+              {
+                "name": "resetStartPosition",
+                "value": "false",
+                "type": "query",
+                "description": "When true, returns empty set if offset exceeds total records."
+              }
+            ]
+          },
+          "docs": "Returns a list of external approval tasks that are active and pending approval. Results can be filtered by user ID or document type."
+        },
+        {
+          "info": {
+            "name": "Ariba Sourcing Get Approval Task Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://openapi.ariba.com/api/sourcing-approval/v2/prod/task/:entity_id",
+            "params": [
+              {
+                "name": "entity_id",
+                "value": "TASK-500123",
+                "type": "path",
+                "description": "The task ID as returned from GET /changes or GET /pendingApprovables."
+              },
+              {
+                "name": "realm",
+                "value": "mycompany-T",
+                "type": "query",
+                "description": "The SAP Ariba realm name."
+              }
+            ]
+          },
+          "docs": "Retrieves details about the specified external approval task. The entity_id is the task ID returned from GET /changes or GET /pendingApprovables."
+        },
+        {
+          "info": {
+            "name": "Ariba Sourcing Submit Approval Action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://openapi.ariba.com/api/sourcing-approval/v2/prod/action",
+            "params": [
+              {
+                "name": "realm",
+                "value": "mycompany-T",
+                "type": "query",
+                "description": "The SAP Ariba realm name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Posts the action to be taken for the approval task on behalf of the user in the approval flow. Options are to approve, deny, and include comments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
