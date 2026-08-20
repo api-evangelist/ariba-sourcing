@@ -90,6 +90,8 @@ apis:
   humanURL: https://help.sap.com/docs/ariba-apis
   baseURL: https://openapi.ariba.com/api/sourcing-approval/v2/prod
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
