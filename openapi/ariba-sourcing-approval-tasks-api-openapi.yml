@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Ariba Sourcing - External Approval Approval Tasks API
   description: The External Approval API for Sourcing and Supplier Management enables client applications to approve or deny SAP Ariba strategic sourcing solutions approval tasks. It supports external approval tasks in sourcing projects, contract workspaces, engagement risk assessment, and all types of supplier management projects.
@@ -351,45 +351,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ApprovalChange:
-      title: ApprovalChange
-      description: An approval task state change record.
-      type: object
-      properties:
-        changeSequenceId:
-          type: string
-          description: Sequence ID of the change for pagination.
-          example: '12345'
-        taskId:
-          type: string
-          description: Task identifier.
-          example: TASK-500123
-        documentType:
-          type: string
-          description: Type of document being approved.
-          example: RFXDocument
-        documentId:
-          type: string
-          description: Document identifier.
-          example: DOC-001234
-        status:
-          type: string
-          description: Current task status.
-          example: submitted
-        fullURL:
-          type: string
-          description: Full URL to view the approvable in the SAP Ariba UI.
-          example: https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace
-    PendingApprovablesResponse:
-      title: PendingApprovablesResponse
-      description: Response containing pending approval tasks.
-      type: object
-      properties:
-        tasks:
-          type: array
-          description: List of pending approval tasks.
-          items:
-            $ref: '#/components/schemas/PendingApprovalTask'
     ApprovalActionResponse:
       title: ApprovalActionResponse
       description: Response from submitting an approval action.
@@ -407,29 +368,26 @@ components:
           type: string
           description: Result status.
           example: submitted
-    ApprovalRequest:
-      title: ApprovalRequest
-      description: An approval request entry.
+    ApprovalChangesResponse:
+      title: ApprovalChangesResponse
+      description: Response containing changed approval tasks.
       type: object
       properties:
-        approvers:
+        changes:
           type: array
-          description: List of approvers.
+          description: List of approval task changes.
           items:
-            $ref: '#/components/schemas/Approver'
-    ErrorResponse:
-      title: ErrorResponse
-      description: Error response.
+            $ref: '#/components/schemas/ApprovalChange'
+    PendingApprovablesResponse:
+      title: PendingApprovablesResponse
+      description: Response containing pending approval tasks.
       type: object
       properties:
-        code:
-          type: integer
-          description: HTTP status code.
-          example: 400
-        message:
-          type: string
-          description: Error message.
-          example: Bad Request
+        tasks:
+          type: array
+          description: List of pending approval tasks.
+          items:
+            $ref: '#/components/schemas/PendingApprovalTask'
     ApprovalTask:
       title: ApprovalTask
       description: Details about an external approval task.
@@ -456,44 +414,16 @@ components:
           description: Approval request entries with approver details.
           items:
             $ref: '#/components/schemas/ApprovalRequest'
-    ApprovalActionRequest:
-      title: ApprovalActionRequest
-      description: Request body for submitting an approval action.
-      type: object
-      required:
-      - taskId
-      - action
-      - userId
-      properties:
-        taskId:
-          type: string
-          description: Task identifier.
-          example: TASK-500123
-        action:
-          type: string
-          description: Action to take.
-          enum:
-          - approve
-          - deny
-          example: approve
-        userId:
-          type: string
-          description: User ID submitting the action.
-          example: jsmith@example.com
-        comment:
-          type: string
-          description: Optional comment for the action.
-          example: Approved per procurement policy.
-    ApprovalChangesResponse:
-      title: ApprovalChangesResponse
-      description: Response containing changed approval tasks.
+    ApprovalRequest:
+      title: ApprovalRequest
+      description: An approval request entry.
       type: object
       properties:
-        changes:
+        approvers:
           type: array
-          description: List of approval task changes.
+          description: List of approvers.
           items:
-            $ref: '#/components/schemas/ApprovalChange'
+            $ref: '#/components/schemas/Approver'
     Approver:
       title: Approver
       description: An individual or group approver.
@@ -536,6 +466,76 @@ components:
           type: string
           description: Full URL to view the approvable in the SAP Ariba UI.
           example: https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace
+    ApprovalChange:
+      title: ApprovalChange
+      description: An approval task state change record.
+      type: object
+      properties:
+        changeSequenceId:
+          type: string
+          description: Sequence ID of the change for pagination.
+          example: '12345'
+        taskId:
+          type: string
+          description: Task identifier.
+          example: TASK-500123
+        documentType:
+          type: string
+          description: Type of document being approved.
+          example: RFXDocument
+        documentId:
+          type: string
+          description: Document identifier.
+          example: DOC-001234
+        status:
+          type: string
+          description: Current task status.
+          example: submitted
+        fullURL:
+          type: string
+          description: Full URL to view the approvable in the SAP Ariba UI.
+          example: https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace
+    ApprovalActionRequest:
+      title: ApprovalActionRequest
+      description: Request body for submitting an approval action.
+      type: object
+      required:
+      - taskId
+      - action
+      - userId
+      properties:
+        taskId:
+          type: string
+          description: Task identifier.
+          example: TASK-500123
+        action:
+          type: string
+          description: Action to take.
+          enum:
+          - approve
+          - deny
+          example: approve
+        userId:
+          type: string
+          description: User ID submitting the action.
+          example: jsmith@example.com
+        comment:
+          type: string
+          description: Optional comment for the action.
+          example: Approved per procurement policy.
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response.
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message.
+          example: Bad Request
   securitySchemes:
     OAuth2:
       type: oauth2

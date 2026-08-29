@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Ariba Sourcing - External Approval Approval Tasks Documents API
   description: The External Approval API for Sourcing and Supplier Management enables client applications to approve or deny SAP Ariba strategic sourcing solutions approval tasks. It supports external approval tasks in sourcing projects, contract workspaces, engagement risk assessment, and all types of supplier management projects.
