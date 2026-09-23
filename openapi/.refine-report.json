@@ -1,9 +1,7 @@
 {
   "provider": "ariba-sourcing",
   "sources": [
-    "ariba-sourcing-approval-tasks-api-openapi.yml",
-    "ariba-sourcing-documents-api-openapi.yml",
-    "ariba-sourcing-groups-api-openapi.yml"
+    "_ae-authored/ariba-sourcing-external-approval-api.yaml"
   ],
   "outputs": [
     "ariba-sourcing-approval-tasks-api-openapi.yml",
@@ -14,10 +12,13 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "ariba-sourcing-approval-tasks-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "ariba-sourcing-documents-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "ariba-sourcing-groups-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ariba-sourcing-external-approval-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "ariba-sourcing-approval-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ariba-sourcing-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ariba-sourcing-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
