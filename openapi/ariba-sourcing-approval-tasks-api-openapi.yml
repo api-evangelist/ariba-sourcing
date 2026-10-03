@@ -368,6 +368,88 @@ components:
           type: string
           description: Result status.
           example: submitted
+    Approver:
+      title: Approver
+      description: An individual or group approver.
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User identifier.
+          example: jsmith@example.com
+        name:
+          type: string
+          description: Approver display name.
+          example: Jane Smith
+    PendingApprovablesResponse:
+      title: PendingApprovablesResponse
+      description: Response containing pending approval tasks.
+      type: object
+      properties:
+        tasks:
+          type: array
+          description: List of pending approval tasks.
+          items:
+            $ref: '#/components/schemas/PendingApprovalTask'
+    ApprovalRequest:
+      title: ApprovalRequest
+      description: An approval request entry.
+      type: object
+      properties:
+        approvers:
+          type: array
+          description: List of approvers.
+          items:
+            $ref: '#/components/schemas/Approver'
+    ApprovalChangesResponse:
+      title: ApprovalChangesResponse
+      description: Response containing changed approval tasks.
+      type: object
+      properties:
+        changes:
+          type: array
+          description: List of approval task changes.
+          items:
+            $ref: '#/components/schemas/ApprovalChange'
+    ApprovalTask:
+      title: ApprovalTask
+      description: Details about an external approval task.
+      type: object
+      properties:
+        taskId:
+          type: string
+          description: Task identifier.
+          example: TASK-500123
+        documentType:
+          type: string
+          description: Type of document being approved.
+          example: RFXDocument
+        documentId:
+          type: string
+          description: Document identifier.
+          example: DOC-001234
+        status:
+          type: string
+          description: Task status.
+          example: pending
+        approvalRequests:
+          type: array
+          description: Approval request entries with approver details.
+          items:
+            $ref: '#/components/schemas/ApprovalRequest'
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response.
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message.
+          example: Bad Request
     PendingApprovalTask:
       title: PendingApprovalTask
       description: A pending external approval task.
@@ -426,52 +508,6 @@ components:
           type: string
           description: Full URL to view the approvable in the SAP Ariba UI.
           example: https://mycompany-T.sourcing.ariba.com/Sourcing/main/ad/taskWorkspace
-    ErrorResponse:
-      title: ErrorResponse
-      description: Error response.
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code.
-          example: 400
-        message:
-          type: string
-          description: Error message.
-          example: Bad Request
-    ApprovalChangesResponse:
-      title: ApprovalChangesResponse
-      description: Response containing changed approval tasks.
-      type: object
-      properties:
-        changes:
-          type: array
-          description: List of approval task changes.
-          items:
-            $ref: '#/components/schemas/ApprovalChange'
-    Approver:
-      title: Approver
-      description: An individual or group approver.
-      type: object
-      properties:
-        userId:
-          type: string
-          description: User identifier.
-          example: jsmith@example.com
-        name:
-          type: string
-          description: Approver display name.
-          example: Jane Smith
-    ApprovalRequest:
-      title: ApprovalRequest
-      description: An approval request entry.
-      type: object
-      properties:
-        approvers:
-          type: array
-          description: List of approvers.
-          items:
-            $ref: '#/components/schemas/Approver'
     ApprovalActionRequest:
       title: ApprovalActionRequest
       description: Request body for submitting an approval action.
@@ -500,42 +536,6 @@ components:
           type: string
           description: Optional comment for the action.
           example: Approved per procurement policy.
-    PendingApprovablesResponse:
-      title: PendingApprovablesResponse
-      description: Response containing pending approval tasks.
-      type: object
-      properties:
-        tasks:
-          type: array
-          description: List of pending approval tasks.
-          items:
-            $ref: '#/components/schemas/PendingApprovalTask'
-    ApprovalTask:
-      title: ApprovalTask
-      description: Details about an external approval task.
-      type: object
-      properties:
-        taskId:
-          type: string
-          description: Task identifier.
-          example: TASK-500123
-        documentType:
-          type: string
-          description: Type of document being approved.
-          example: RFXDocument
-        documentId:
-          type: string
-          description: Document identifier.
-          example: DOC-001234
-        status:
-          type: string
-          description: Task status.
-          example: pending
-        approvalRequests:
-          type: array
-          description: Approval request entries with approver details.
-          items:
-            $ref: '#/components/schemas/ApprovalRequest'
   securitySchemes:
     OAuth2:
       type: oauth2
