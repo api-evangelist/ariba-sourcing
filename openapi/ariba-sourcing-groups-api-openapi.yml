@@ -90,19 +90,6 @@ components:
           description: List of group member users.
           items:
             $ref: '#/components/schemas/GroupMember'
-    GroupMember:
-      title: GroupMember
-      description: A member of an approval group.
-      type: object
-      properties:
-        userId:
-          type: string
-          description: User identifier.
-          example: jsmith@example.com
-        name:
-          type: string
-          description: User display name.
-          example: Jane Smith
     ErrorResponse:
       title: ErrorResponse
       description: Error response.
@@ -116,6 +103,19 @@ components:
           type: string
           description: Error message.
           example: Bad Request
+    GroupMember:
+      title: GroupMember
+      description: A member of an approval group.
+      type: object
+      properties:
+        userId:
+          type: string
+          description: User identifier.
+          example: jsmith@example.com
+        name:
+          type: string
+          description: User display name.
+          example: Jane Smith
   securitySchemes:
     OAuth2:
       type: oauth2
