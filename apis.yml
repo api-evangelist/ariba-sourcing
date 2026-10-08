@@ -127,6 +127,12 @@ apis:
   - type: JSONLD
     url: json-ld/ariba-sourcing-external-approval-api-context.jsonld
 common:
+- type: Plans
+  url: plans/ariba-sourcing-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/ariba-sourcing-rate-limits.yml
+- type: FinOps
+  url: finops/ariba-sourcing-finops.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/ariba-sourcing/overview
 - type: AgenticAccess
