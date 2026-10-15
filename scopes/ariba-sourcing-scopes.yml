@@ -1,11 +1,29 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/ariba-sourcing-external-approval-api.yaml
-docs: https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/use-of-api-gateway-and-oauth-to-authenticate-applications
-note: SAP Ariba APIs use a two-legged OAuth client credentials flow (grant_type=client_credentials)
-  with no scope parameter; access is governed by per-API access requests, application
-  keys, and realm approval rather than documented OAuth scopes (https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/use-of-api-gateway-and-oauth-to-authenticate-applications).
+generated: '2026-10-14'
+method: none
+source: openapi/ariba-sourcing-approval-tasks-api-openapi.yml, openapi/ariba-sourcing-documents-api-openapi.yml,
+  openapi/ariba-sourcing-external-approval-api.yaml, openapi/ariba-sourcing-groups-api-openapi.yml
 schemes:
+- name: OAuth2
+  source: openapi/ariba-sourcing-approval-tasks-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.ariba.com/v2/oauth/token
+  description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token
+    using client credentials.
+- name: OAuth2
+  source: openapi/ariba-sourcing-documents-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.ariba.com/v2/oauth/token
+  description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token
+    using client credentials.
+- name: OAuth2
+  source: openapi/ariba-sourcing-groups-api-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.ariba.com/v2/oauth/token
+  description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token
+    using client credentials.
 - name: OAuth2
   source: openapi/ariba-sourcing-external-approval-api.yaml
   flows:
@@ -14,3 +32,5 @@ schemes:
   description: OAuth 2.0 authentication. Obtain access token from https://api.ariba.com/v2/oauth/token
     using client credentials.
 scopes: []
+note: The OAuth2 security scheme(s) in the OpenAPI declare no scopes, and no security requirement
+  references one.
