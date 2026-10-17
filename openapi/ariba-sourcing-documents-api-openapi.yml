@@ -141,6 +141,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      description: Error response.
+      type: object
+      properties:
+        code:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Error message.
+          example: Bad Request
     ApprovableDocument:
       title: ApprovableDocument
       description: An approvable document or project.
@@ -166,19 +179,6 @@ components:
           type: string
           description: SAP Ariba realm name.
           example: mycompany-T
-    ErrorResponse:
-      title: ErrorResponse
-      description: Error response.
-      type: object
-      properties:
-        code:
-          type: integer
-          description: HTTP status code.
-          example: 400
-        message:
-          type: string
-          description: Error message.
-          example: Bad Request
   securitySchemes:
     OAuth2:
       type: oauth2
