@@ -1,4 +1,4 @@
-# Ariba Sourcing (ariba-sourcing)
+# Ariba Sourcing
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,145 +66,166 @@
 
 SAP Ariba Sourcing provides cloud-based strategic sourcing capabilities for procurement organizations. It enables supplier collaboration, RFx management, electronic auctions, and contract management through APIs that integrate sourcing processes with enterprise systems.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/ariba-sourcing/refs/heads/main/apis.yml)
+**Areas:** Approvals · Auctions · B2B · Contracts · Procurement · RFx · SAP · Sourcing · Supplier Management · Supply Chain
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Ariba Sourcing on APIs.io
 
-## Tags:
+Everything profiled for Ariba Sourcing is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ariba-sourcing/](https://apis.io/providers/ariba-sourcing/)** — or go straight to one of the APIs or properties below.
 
- - Approvals, Auctions, B2B, Contracts, Procurement, RFx, SAP, Sourcing, Supplier Management, Supply Chain
+### APIs (3)
 
-## Timestamps
+- [Ariba Sourcing Approval Tasks API](https://apis.io/apis/ariba-sourcing/ariba-sourcing-approval-tasks-api/) — External approval task retrieval and action operations
+- [Ariba Sourcing Documents API](https://apis.io/apis/ariba-sourcing/ariba-sourcing-documents-api/) — Sourcing document and workspace retrieval
+- [Ariba Sourcing Groups API](https://apis.io/apis/ariba-sourcing/ariba-sourcing-groups-api/) — Approval group membership retrieval
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Ariba Sourcing - External Approval API
-The External Approval API for Sourcing and Supplier Management enables client applications to approve or deny SAP Ariba strategic sourcing approval tasks. It supports external approval tasks in sourcing projects, contract workspaces, engagement risk assessment, and all types of supplier management projects.
+#### Agentic access (1)
 
-**Human URL:** [https://help.sap.com/docs/ariba-apis](https://help.sap.com/docs/ariba-apis)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Ariba Sourcing Agentic Access](https://apis.io/agentic-access/ariba-sourcing/ariba-sourcing-agentic-access/)
 
- - Approvals, Contracts, RFx, Sourcing, Supplier Management
+#### JSON Schema (12)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://help.sap.com/doc/69824194c55e4393870c5d3587aaf821/cloud/en-US/abdf297f281243ed9f8f3ead706a74d3.pdf)
-- [OpenAPI](openapi/ariba-sourcing-external-approval-api.yaml)
-- [JSONSchema](json-schema/external-approval-api-approval-task-schema.json)
-- [JSONSchema](json-schema/external-approval-api-approvable-document-schema.json)
-- [JSONSchema](json-schema/external-approval-api-approval-changes-response-schema.json)
-- [JSONStructure](json-structure/external-approval-api-approval-task-structure.json)
-- [JSONStructure](json-structure/external-approval-api-approvable-document-structure.json)
-- [JSON-LD](json-ld/ariba-sourcing-external-approval-api-context.jsonld)
+- [ApprovableDocument](https://apis.io/schemas/ariba-sourcing/external-approval-api-approvable-document/)
+- [ApprovalActionRequest](https://apis.io/schemas/ariba-sourcing/external-approval-api-approval-action-request/)
+- [ApprovalActionResponse](https://apis.io/schemas/ariba-sourcing/external-approval-api-approval-action-response/)
+- [ApprovalChange](https://apis.io/schemas/ariba-sourcing/external-approval-api-approval-change/)
+- [ApprovalChangesResponse](https://apis.io/schemas/ariba-sourcing/external-approval-api-approval-changes-response/)
+- [ApprovalRequest](https://apis.io/schemas/ariba-sourcing/external-approval-api-approval-request/)
+- [ApprovalTask](https://apis.io/schemas/ariba-sourcing/external-approval-api-approval-task/)
+- [Approver](https://apis.io/schemas/ariba-sourcing/external-approval-api-approver/)
+- [GroupMember](https://apis.io/schemas/ariba-sourcing/external-approval-api-group-member/)
+- [GroupMembersResponse](https://apis.io/schemas/ariba-sourcing/external-approval-api-group-members-response/)
+- [PendingApprovablesResponse](https://apis.io/schemas/ariba-sourcing/external-approval-api-pending-approvables-response/)
+- [PendingApprovalTask](https://apis.io/schemas/ariba-sourcing/external-approval-api-pending-approval-task/)
 
-## Common Properties
+#### JSON Structure (12)
 
-- [Portal](https://developer.ariba.com)
+Data models expressed in JSON Structure.
+
+- [External Approval Api Approvable Document Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-approvable-document-structure/)
+- [External Approval Api Approval Action Request Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-approval-action-request-structure/)
+- [External Approval Api Approval Action Response Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-approval-action-response-structure/)
+- [External Approval Api Approval Change Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-approval-change-structure/)
+- [External Approval Api Approval Changes Response Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-approval-changes-response-structure/)
+- [External Approval Api Approval Request Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-approval-request-structure/)
+- [External Approval Api Approval Task Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-approval-task-structure/)
+- [External Approval Api Approver Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-approver-structure/)
+- [External Approval Api Group Member Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-group-member-structure/)
+- [External Approval Api Group Members Response Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-group-members-response-structure/)
+- [External Approval Api Pending Approvables Response Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-pending-approvables-response-structure/)
+- [External Approval Api Pending Approval Task Structure](https://apis.io/json-structure/ariba-sourcing/external-approval-api-pending-approval-task-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Ariba Sourcing External Approval Api Context](https://apis.io/jsonld/ariba-sourcing/ariba-sourcing-external-approval-api-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Ariba Sourcing Vocabulary](https://apis.io/vocabularies/ariba-sourcing/ariba-sourcing-vocabulary/)
+
+#### Examples (12)
+
+Example requests and responses.
+
+- [External Approval Api Approvable Document Example](https://apis.io/examples/ariba-sourcing/external-approval-api-approvable-document-example/)
+- [External Approval Api Approval Action Request Example](https://apis.io/examples/ariba-sourcing/external-approval-api-approval-action-request-example/)
+- [External Approval Api Approval Action Response Example](https://apis.io/examples/ariba-sourcing/external-approval-api-approval-action-response-example/)
+- [External Approval Api Approval Change Example](https://apis.io/examples/ariba-sourcing/external-approval-api-approval-change-example/)
+- [External Approval Api Approval Changes Response Example](https://apis.io/examples/ariba-sourcing/external-approval-api-approval-changes-response-example/)
+- [External Approval Api Approval Request Example](https://apis.io/examples/ariba-sourcing/external-approval-api-approval-request-example/)
+- [External Approval Api Approval Task Example](https://apis.io/examples/ariba-sourcing/external-approval-api-approval-task-example/)
+- [External Approval Api Approver Example](https://apis.io/examples/ariba-sourcing/external-approval-api-approver-example/)
+- [External Approval Api Group Member Example](https://apis.io/examples/ariba-sourcing/external-approval-api-group-member-example/)
+- [External Approval Api Group Members Response Example](https://apis.io/examples/ariba-sourcing/external-approval-api-group-members-response-example/)
+- [External Approval Api Pending Approvables Response Example](https://apis.io/examples/ariba-sourcing/external-approval-api-pending-approvables-response-example/)
+- [External Approval Api Pending Approval Task Example](https://apis.io/examples/ariba-sourcing/external-approval-api-pending-approval-task-example/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Ariba Sourcing - External Approval Approval Tasks API](https://apis.io/collections/ariba-sourcing/open-ariba-sourcing-approval-tasks-api/)
+- [Ariba Sourcing - External Approval Approval Tasks Documents API](https://apis.io/collections/ariba-sourcing/open-ariba-sourcing-documents-api/)
+- [Ariba Sourcing - External Approval Approval Tasks Groups API](https://apis.io/collections/ariba-sourcing/open-ariba-sourcing-groups-api/)
+- [Ariba Sourcing - External Approval Approval Tasks API](https://apis.io/collections/ariba-sourcing/postman-ariba-sourcing-approval-tasks-api/)
+- [Ariba Sourcing - External Approval Approval Tasks Documents API](https://apis.io/collections/ariba-sourcing/postman-ariba-sourcing-documents-api/)
+- [Ariba Sourcing - External Approval Approval Tasks Groups API](https://apis.io/collections/ariba-sourcing/postman-ariba-sourcing-groups-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Ariba Sourcing — jsonschema rules](https://apis.io/rules/ariba-sourcing/ariba-sourcing-jsonschema-spectral-rules/)
+- [Ariba Sourcing API Rules](https://apis.io/rules/ariba-sourcing/ariba-sourcing-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ariba Sourcing Authentication](https://apis.io/security/ariba-sourcing/ariba-sourcing-authentication/)
+- [Ariba Sourcing Domain Security](https://apis.io/security/ariba-sourcing/ariba-sourcing-domain-security/)
+- [Ariba Sourcing Vulnerability Disclosure](https://apis.io/security/ariba-sourcing/ariba-sourcing-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Ariba Sourcing Scopes](https://apis.io/scopes/ariba-sourcing/ariba-sourcing-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Ariba Sourcing Plans Pricing](https://apis.io/plans/ariba-sourcing/ariba-sourcing-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Ariba Sourcing Rate Limits](https://apis.io/rate-limits/ariba-sourcing/ariba-sourcing-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ariba Sourcing Finops](https://apis.io/finops/ariba-sourcing/ariba-sourcing-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Documentation](https://help.sap.com/docs/ariba-apis)
-- [GettingStarted](https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-quick-start-guide-for-developers)
+- [Getting started](https://help.sap.com/docs/ariba-apis/help-for-sap-ariba-developer-portal/sap-ariba-developer-portal-quick-start-guide-for-developers)
 - [Support](https://help.sap.com/ariba)
-- [TermsOfService](https://www.sap.com/corporate/en/legal/terms-of-use.html)
-- [PrivacyPolicy](https://www.sap.com/about/legal/privacy.html)
-- [GitHubOrganization](https://github.com/SAP-samples)
-- [CodeExamples - SAP Ariba Extensibility Samples](https://github.com/SAP-samples/ariba-extensibility-samples)
+- [Terms of service](https://www.sap.com/corporate/en/legal/terms-of-use.html)
+- [Privacy policy](https://www.sap.com/about/legal/privacy.html)
+- [GitHub](https://github.com/SAP-samples)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| External Approval Workflow | Enables external systems to retrieve, review, and approve or deny SAP Ariba sourcing approval tasks programmatically. |
-| Multi-Document Type Support | Supports approval tasks for sourcing projects, RFX documents, contract workspaces, contract content, and supplier management projects. |
-| Rate-Limited API Access | Well-defined rate limits of 20 req/sec, 400 req/min, 12000 req/hour, and 40000 req/day for production stability. |
-| Pagination Support | Results pagination with offset and limit parameters plus X-Total-Count headers for efficient data retrieval. |
-| Group-Based Approval | Supports approval flows with groups, enabling retrieval of group membership to identify eligible approvers. |
-| Attachment Downloads | Enables downloading attachments associated with approvable documents for review prior to approval decisions. |
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
 
-## Use Cases
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
 
-| Name | Description |
-|------|-------------|
-| Automated Sourcing Approvals | Automate the approval workflow for sourcing events and contracts by polling for pending tasks and submitting programmatic approval actions. |
-| ERP-Integrated Approvals | Route SAP Ariba sourcing approval tasks to external ERP or workflow systems for approval by authorized personnel. |
-| Supplier Onboarding Approval | Manage external approval of supplier registration and onboarding projects through the supplier management approval workflow. |
-| Contract Approval Automation | Integrate contract workspace approvals with enterprise contract management systems for streamlined legal and commercial review. |
+## How this profile is made
 
-## Integrations
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-| Name | Description |
-|------|-------------|
-| SAP ERP | Route sourcing approval tasks to SAP ERP workflows and approval hierarchies. |
-| SAP Integration Suite | Orchestrate approval workflows across SAP Ariba and connected systems using SAP Integration Suite. |
-| SAP Ariba Contracts | Approve contract workspaces and contract content documents through the external approval API. |
-| SAP Ariba Supplier Management | Approve supplier lifecycle and performance management projects and supplier registration requests. |
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Ariba Sourcing: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-## Artifacts
+## Open an issue
 
-Machine-readable API specifications organized by format.
-
-### OpenAPI
-
-- [Ariba Sourcing - External Approval API](openapi/ariba-sourcing-external-approval-api.yaml)
-
-### JSON Schema
-
-- [external-approval-api-approval-task-schema](json-schema/external-approval-api-approval-task-schema.json)
-- [external-approval-api-approvable-document-schema](json-schema/external-approval-api-approvable-document-schema.json)
-- [external-approval-api-approval-changes-response-schema](json-schema/external-approval-api-approval-changes-response-schema.json)
-- [external-approval-api-approval-change-schema](json-schema/external-approval-api-approval-change-schema.json)
-- [external-approval-api-pending-approvables-response-schema](json-schema/external-approval-api-pending-approvables-response-schema.json)
-- [external-approval-api-pending-approval-task-schema](json-schema/external-approval-api-pending-approval-task-schema.json)
-- [external-approval-api-approval-action-request-schema](json-schema/external-approval-api-approval-action-request-schema.json)
-- [external-approval-api-approval-action-response-schema](json-schema/external-approval-api-approval-action-response-schema.json)
-- [external-approval-api-group-members-response-schema](json-schema/external-approval-api-group-members-response-schema.json)
-- [external-approval-api-group-member-schema](json-schema/external-approval-api-group-member-schema.json)
-- [external-approval-api-approval-request-schema](json-schema/external-approval-api-approval-request-schema.json)
-- [external-approval-api-approver-schema](json-schema/external-approval-api-approver-schema.json)
-
-### JSON Structure
-
-- [external-approval-api-approval-task-structure](json-structure/external-approval-api-approval-task-structure.json)
-- [external-approval-api-approvable-document-structure](json-structure/external-approval-api-approvable-document-structure.json)
-- [external-approval-api-approval-changes-response-structure](json-structure/external-approval-api-approval-changes-response-structure.json)
-- [external-approval-api-approval-change-structure](json-structure/external-approval-api-approval-change-structure.json)
-- [external-approval-api-pending-approvables-response-structure](json-structure/external-approval-api-pending-approvables-response-structure.json)
-- [external-approval-api-pending-approval-task-structure](json-structure/external-approval-api-pending-approval-task-structure.json)
-- [external-approval-api-approval-action-request-structure](json-structure/external-approval-api-approval-action-request-structure.json)
-- [external-approval-api-approval-action-response-structure](json-structure/external-approval-api-approval-action-response-structure.json)
-- [external-approval-api-group-members-response-structure](json-structure/external-approval-api-group-members-response-structure.json)
-- [external-approval-api-group-member-structure](json-structure/external-approval-api-group-member-structure.json)
-
-### JSON-LD
-
-- [ariba-sourcing-external-approval-api-context](json-ld/ariba-sourcing-external-approval-api-context.jsonld)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [External Approval API](capabilities/shared/external-approval-api.yaml) — 6 operations for approval task retrieval, document review, and action submission
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Sourcing Approvals](capabilities/sourcing-approvals.yaml) | External Approval API | 7 | Sourcing Manager, Procurement Approver |
-
-## Vocabulary
-
-- [Ariba Sourcing Vocabulary](vocabulary/ariba-sourcing-vocabulary.yaml) — Unified taxonomy mapping 5 resources, 3 actions, 1 workflow, and 2 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Ariba Sourcing Spectral Rules](rules/ariba-sourcing-spectral-rules.yml) — 28 rules across 9 categories enforcing Ariba Sourcing API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ariba-sourcing/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
